@@ -7,9 +7,9 @@ description: >
   scrape jobs, /scrape
 ---
 
-## Codex US dispatch (read first)
+## Shared US dispatch (read first)
 
-Read `AGENTS.md` and `workflows/codex.md` before following the inherited procedure
+Read `AGENTS.md` and `workflows/career.md` before following the inherited procedure
 below. Select the user's track, load its guide, resolve all private paths, and
 use the US registry. Graduate/academia use their own weighting/documents/cycles.
 For search, the runtime's **Search** section replaces the inherited Step 1 and

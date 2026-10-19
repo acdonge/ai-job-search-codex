@@ -27,11 +27,11 @@ class OnboardingPrivacy(unittest.TestCase):
         self.assertEqual(before, {p: p.read_bytes() for p in sources})
 
     def test_setup_points_to_private_runtime_before_writes(self):
-        text = (REPO / 'workflows/setup.md').read_text()
-        self.assertLess(text.index('workflows/codex.md'), text.index('## Step 3: Generate Profile Files'))
+        text = (REPO / 'workflows/setup.md').read_text(encoding="utf-8")
+        self.assertLess(text.index('workflows/career.md'), text.index('## Step 3: Generate Profile Files'))
         self.assertIn('do not personalize tracked templates', text)
         for name in ('README.md', 'SETUP.md'):
-            self.assertIn('workspace/', (REPO / name).read_text())
+            self.assertIn('workspace/', (REPO / name).read_text(encoding="utf-8"))
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,18 +1,30 @@
-# Codex US setup
+# US setup for Codex and Claude Code
 
 ## 1. Open this adapted checkout
 
 Clone [acdonge/ai-job-search-codex](https://github.com/acdonge/ai-job-search-codex),
-then open its folder in Codex desktop or run `codex` from the repository root.
-Clone this adaptation to get the US tracks; the original upstream repository has
-its own workflow and does not contain these changes.
-[Official Codex skills documentation](https://learn.chatgpt.com/docs/build-skills)
-explains `.agents/skills` discovery and `$skill` invocation. If newly added skills
-do not appear, reopen the project/chat. No Claude runtime/configuration is needed.
+then start `codex` or `claude` from the repository root. You can also open the
+folder in Codex desktop. Use your normal sign-in for the chosen host.
+
+- Codex reads `AGENTS.md` and discovers `.agents/skills/`; invoke `$career-setup`.
+- Claude Code reads `CLAUDE.md`, which imports `AGENTS.md`, and discovers the
+  committed `.claude/skills/` adapters; invoke `/career-setup`.
+- Both follow `workflows/career.md`, the same three track guides, and the same
+  `workspace/` profile and opportunity files. No symlink setup or copying is needed.
+
+If newly added skills do not appear, reopen the project/chat. Maintain canonical
+skills under `.agents/skills/`, then run `python3 tools/sync_claude_skills.py` to
+refresh the Claude adapters. `--check` detects drift without changing files.
+[Codex skills](https://learn.chatgpt.com/docs/build-skills),
+[Claude skills](https://code.claude.com/docs/en/skills), and
+[Claude instruction imports](https://code.claude.com/docs/en/memory#import-additional-files)
+describe the native loading mechanisms. This setup targets **Claude Code**, not
+uploading the repository to a regular claude.ai chat.
 
 ## 2. Select the track
 
-Say “Help me get started with my applications” or invoke `$career-setup`. The first career interaction asks
+Say “Help me get started with my applications”, invoke `$career-setup` in Codex,
+or invoke `/career-setup` in Claude Code. The first career interaction asks
 industry / graduate / academia, then field/subfield. You can select explicitly:
 
 ```bash
@@ -29,9 +41,9 @@ Do not share its output if it contains personal data.
 ## 3. Provide evidence
 
 Put permitted files under `workspace/<track>/documents/` (cv, diplomas, projects,
-references, applications, postings) or explicitly point Codex at a file to import.
+references, applications, postings) or explicitly point the assistant at a file to import.
 Use documents you have permission to process. The private profile copies are under
-`workspace/<track>/profile/`; source templates remain unchanged. Ask Codex to update
+`workspace/<track>/profile/`; source templates remain unchanged. Ask the assistant to update
 only confirmed fields. Unknown values stay unknown. Private state is Git-ignored.
 
 For graduate admissions specify MS type / PhD, field, entry term/year, interests,
@@ -42,8 +54,9 @@ For industry specify roles, seniority, target geography/remote and requirements.
 ## 4. Search and prepare
 
 Use `$career-search` → `$career-rank` → `$career-apply` → `$career-interview` →
-`$career-outcome`. Plain-language requests work too. Pass an official URL or paste
-full text when a portal is blocked. Codex records source, access status and freshness.
+`$career-outcome` in Codex; use the same names with `/` in Claude Code.
+Plain-language requests work too. Pass an official URL or paste
+full text when a portal is blocked. The assistant records source, access status and freshness.
 The registry is a starting set; add discipline-specific society and institution
 sources as the user's field becomes known. Do not assume saved pages remain current.
 

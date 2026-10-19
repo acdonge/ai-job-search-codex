@@ -1,5 +1,5 @@
-> Codex edition: put candidate documents under `workspace/<track>/documents/`.
-> The layouts below apply within that private directory. Read `workflows/codex.md`.
+> Shared US edition: put candidate documents under `workspace/<track>/documents/`.
+> The layouts below apply within that private directory. Read `workflows/career.md`.
 
 # Documents Folder
 

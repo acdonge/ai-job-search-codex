@@ -1,7 +1,7 @@
 # US search queries by selected track
 
 Template only: personalize the copy at `workspace/<track>/profile/search-queries.md`.
-Read `workflows/codex.md`, the selected track guide and `config/us_sources.json`.
+Read `workflows/career.md`, the selected track guide and `config/us_sources.json`.
 The registry supplies US sources and access limits; web discovery is the default.
 Optional legacy CLIs run only when explicitly chosen. Do not run Danish adapters
 or every installed CLI merely because its directory exists.

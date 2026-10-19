@@ -1,8 +1,10 @@
-# Codex US Career Workspace
+# US Career Workspace — Codex and Claude Code
 
-This is a direct Codex adaptation of MadsLorentzen/ai-job-search. Follow the
-canonical workflows in `workflows/`, native skills in `.agents/skills/`, and
-track guides in `tracks/`. Start at `workflows/codex.md`.
+Adapted from MadsLorentzen/ai-job-search for US industry jobs, MS/PhD admissions,
+and academic jobs. Both hosts share these instructions, `workflows/career.md`,
+the canonical skills in `.agents/skills/`, and the guides in `tracks/`.
+Claude Code loads this file through `CLAUDE.md`; its skill adapters live in
+`.claude/skills/`. Read the shared dispatcher before career work.
 
 ## First career interaction in every new chat
 
@@ -21,13 +23,14 @@ user language preference or the target institution’s document requirements.
 
 ## Execution rules
 
-- `$career-setup`, `$career-search`, `$career-rank`, `$career-apply`,
-  `$career-interview`, `$career-outcome` are native skills. Natural language works.
-  Old `/setup`, `/scrape`, etc. are conversational aliases, not registered Codex
-  slash commands. Interpret them through the native skill.
+- In Codex, invoke `$career-setup`, `$career-search`, `$career-rank`,
+  `$career-apply`, `$career-interview`, or `$career-outcome`. In Claude Code,
+  use `/career-setup`, `/career-search`, etc. Natural language works in both.
+  Inherited workflow labels such as `/setup` and `/apply` are references;
+  prefer the registered `career-*` skills for native invocation.
 - Keep all candidate facts, tailored profiles and output under ignored `workspace/`.
   Never personalize tracked templates or SKILL.md files. Never commit personal data.
-- Follow `workflows/codex.md` path mapping and track precedence before reading an
+- Follow `workflows/career.md` path mapping and track precedence before reading an
   inherited workflow. Graduate/academia must not use industry weights/page limits.
 - Source registry: `config/us_sources.json`. Use broad US discovery then verify on
   current official employer/program/institution pages. Record URLs, checked dates,
@@ -40,7 +43,7 @@ user language preference or the target institution’s document requirements.
   Agent roles in `agents/` are procedure references, not installed custom agents.
   Delegate read-only review/fetch tasks only if supported; otherwise run a separate
   explicit review pass and disclose no independent agent was available. Instructions
-  do not enforce a sandbox. Never claim Claude permissions apply in Codex.
+  do not enforce a sandbox. Use the active host's tools and permission policy.
 - Drafting is not submitting. Never send emails, submit applications, pay fees or
   contact referees without explicit authorization. Confirm outcomes from evidence.
 - Optional Gmail/Notion integrations use discovered installed connector tools;
@@ -50,6 +53,8 @@ user language preference or the target institution’s document requirements.
 
 Use installed Agent Skills for engineering changes. Preserve upstream attribution
 and reusable code. Run `python3 -m unittest discover -s tests -t .`,
-`python3 tools/lint_skills.py`, and `python3 tools/security_guards.py`.
-Do not weaken test assertions merely to make migration tests green; update obsolete
-Claude contracts to the corresponding Codex behavior and document the difference.
+`python3 tools/lint_skills.py`, `python3 tools/sync_claude_skills.py --check`,
+and `python3 tools/security_guards.py`. Edit skills in `.agents/skills/`, then run
+`python3 tools/sync_claude_skills.py` to refresh the committed Claude adapters.
+Do not weaken test assertions merely to make migration tests green. Keep the US
+tracks, source registry, private profiles, and application evidence rules shared.

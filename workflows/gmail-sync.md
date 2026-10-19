@@ -1,6 +1,6 @@
 # /gmail-sync - Sync Application Status from Gmail
 
-> Codex: read `AGENTS.md` and `workflows/codex.md` first. Select the track and
+> Both runtimes: read `AGENTS.md` and `workflows/career.md` first. Select the track and
 > resolve every personal path through the private workspace mapping. This file
 > preserves the upstream detailed procedure; US track rules take precedence.
 
@@ -14,7 +14,7 @@ Follow these steps **in order**.
 
 ## Step 0: Prerequisites
 
-Discover the Gmail connector tools available in this Codex session. If absent, explain how to connect Gmail through the app’s plugin settings and stop this optional sync - do not attempt this via Bash, IMAP, or any other channel.
+Discover the Gmail connector tools available in this session. If absent, explain how to connect Gmail through the current host’s connector or MCP settings and stop this optional sync - do not attempt this via Bash, IMAP, or any other channel.
 
 ---
 

@@ -7,7 +7,7 @@ switching `active_track` must not overwrite the industry or graduate profile. Co
 in English by default, honoring explicit user preferences, with English application materials
 unless the institution requests otherwise.
 
-Read `workflows/codex.md` for the runtime/path contract. Set `BASE=workspace/academia`:
+Read `workflows/career.md` for the runtime/path contract. Set `BASE=workspace/academia`:
 private profile sources belong in `BASE/profile/`, dossiers in `BASE/documents/`.
 Write `BASE/opportunities.json` through
 `python tools/career.py record --file <private-record.json>`, with `title`, `organization`,

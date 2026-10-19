@@ -3,13 +3,13 @@
 This track adapts the upstream job evaluation, tailored CV/cover letter, independent
 review, posting archive, PDF inspection, interview, and outcome workflow. The sequence
 is **setup → search → rank → apply → interview → outcome**. Read this after the shared
-Codex skill and `workflows/codex.md`. Use `workspace/profile.json` → `profiles.industry`; never replace another
+career skill and `workflows/career.md`. Use `workspace/profile.json` → `profiles.industry`; never replace another
 track's profile when `active_track` changes. Use English by default for conversation and application materials, unless the
 user or employer explicitly requests another language.
 
 Private storage follows `BASE=workspace/industry`: profile source copies belong in
 `BASE/profile/`, source snapshots and application materials in `BASE/documents/`.
-Use the path mapping in `workflows/codex.md` for the inherited CV, tracker and tools.
+Use the path mapping in `workflows/career.md` for the inherited CV, tracker and tools.
 
 ## Setup: ask about the candidate, not only the job title
 
@@ -148,7 +148,7 @@ explicit user direction.
 
 Mirror the inherited tracker to `BASE/opportunities.json` through
 `python tools/career.py record --file <private-record.json>` using the status mapping
-in `workflows/codex.md`. Use `--user-confirmed` for submission/outcome transitions
+in `workflows/career.md`. Use `--user-confirmed` for submission/outcome transitions
 only after actual confirmation; the flag is not a substitute for evidence.
 
 ## Official reference checked 2026-10-19

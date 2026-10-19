@@ -109,9 +109,9 @@ class NativeUSSearchRouteTests(unittest.TestCase):
         skill = REPO_ROOT / ".agents/skills/career-search/SKILL.md"
         text = skill.read_text(encoding="utf-8")
         self.assertRegex(text, r"(?m)^name: career-search$")
-        self.assertIn("workflows/codex.md", text)
+        self.assertIn("workflows/career.md", text)
         self.assertIn("tracks/<active_track>.md", text)
-        self.assertTrue((REPO_ROOT / "workflows/codex.md").is_file())
+        self.assertTrue((REPO_ROOT / "workflows/career.md").is_file())
         for track in TRACKS:
             with self.subTest(track=track):
                 self.assertTrue((REPO_ROOT / "tracks" / f"{track}.md").is_file())

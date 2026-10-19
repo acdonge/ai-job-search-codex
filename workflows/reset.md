@@ -1,6 +1,6 @@
 # /reset - Reset Candidate Profile Data
 
-> Codex: read `AGENTS.md` and `workflows/codex.md` first. Select the track and
+> Both runtimes: read `AGENTS.md` and `workflows/career.md` first. Select the track and
 > resolve every personal path through the private workspace mapping. This file
 > preserves the upstream detailed procedure; US track rules take precedence.
 
@@ -40,13 +40,13 @@ Before doing anything, show the user precisely what will be wiped.
 
 ### If scope includes `profile`:
 
-**Codex authoritative reset scope:** Before confirmation, inventory the selected
+**Shared authoritative reset scope:** Before confirmation, inventory the selected
 `profiles[track]` entry in `workspace/profile.json`, `BASE/profile/candidate-profile.md`,
 `BASE/cv/main_example.tex`, and every private methodology/query copy listed below.
 After confirmation, set only that profile entry to `{}` and restore the private
 candidate profile/master CV from their immutable templates. Keep active_track and
 other profiles unchanged. The paths below are inherited names: expand them to BASE
-using `workflows/codex.md`; never edit tracked framework source files.
+using `workflows/career.md`; never edit tracked framework source files.
 
 
 Read the current state of these files and report whether each has content or is already empty:
@@ -265,7 +265,7 @@ placeholders without trying to reconstruct an obsolete query layout.
 
 ### Documents reset
 
-**Codex execution directory:** Run the shell block below with cwd set to the
+**Execution directory:** Run the shell block below with cwd set to the
 selected private BASE (an expanded absolute path), after the exact-file confirmation.
 Never execute it from the repository root or a different track.
 

@@ -684,8 +684,8 @@ class RankStateToolSpec(unittest.TestCase):
     def test_native_rank_skill_routes_to_private_state(self):
         self.assertFalse((REPO / '.claude/settings.json').exists())
         skill = (REPO / '.agents/skills/career-rank/SKILL.md').read_text()
-        self.assertIn('workflows/codex.md', skill)
-        runtime = (REPO / 'workflows/codex.md').read_text()
+        self.assertIn('workflows/career.md', skill)
+        runtime = (REPO / 'workflows/career.md').read_text()
         self.assertIn('--state BASE/job_scraper/seen_jobs.json', runtime)
         self.assertIn('--tracker BASE/job_search_tracker.csv', runtime)
 

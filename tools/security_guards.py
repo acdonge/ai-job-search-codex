@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Repository checks for the Codex port; these checks are not a runtime sandbox.
+"""Repository checks for the shared workflows; not a runtime sandbox.
 
 Preserves upstream personal-data exclusions, dependency-manifest restrictions,
-and the tracked-node_modules check. Rejects leftover Claude permission metadata,
-which Codex does not enforce, instead of pretending it grants tool isolation.
+and the tracked-node_modules check. The portable workflow deliberately avoids
+project permission metadata; users configure their chosen runtime themselves.
 Run from anywhere: python tools/security_guards.py. Standard library only.
 """
 
@@ -16,7 +16,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 errors: list[str] = []
 
-# Legacy exclusions stay in place for imported workspaces. New Codex personal
+# Legacy exclusions stay in place for imported workspaces. Shared personal
 # state lives in workspace/; historical agents could resolve paths at skill depth.
 REQUIRED_IGNORE_RULES = [
     "salary_data.json",
@@ -82,10 +82,11 @@ UNSUPPORTED_PERMISSION_KEYS = {"allowed-tools", "tools", "permissions", "hooks"}
 
 def check_runtime_contract() -> None:
     """These are reference documents, not executable permission configurations."""
-    legacy = ROOT / ".claude" / "settings.json"
-    if legacy.exists():
-        errors.append(".claude/settings.json: obsolete runtime configuration; Codex uses its own user-selected permissions")
+    settings = ROOT / ".claude" / "settings.json"
+    if settings.exists():
+        errors.append(".claude/settings.json: repository runtime settings are not part of this portable workflow; configure permissions in your chosen host")
     paths = list(ROOT.glob(".agents/skills/*/SKILL.md"))
+    paths += list(ROOT.glob(".claude/skills/*/SKILL.md"))
     paths += list((ROOT / "workflows").glob("*.md"))
     paths += list((ROOT / "agents").glob("*.md"))
     for path in sorted(paths):
@@ -103,7 +104,7 @@ def check_runtime_contract() -> None:
             # Keys may be quoted; only root-level metadata is interpreted.
             match = re.match(r"^[\"']?([A-Za-z0-9_-]+)[\"']?\s*:", line)
             if match and match.group(1) in UNSUPPORTED_PERMISSION_KEYS:
-                errors.append(f"{rel}: unsupported permission key '{match.group(1)}'; reference frontmatter cannot restrict Codex tools")
+                errors.append(f"{rel}: unsupported permission key '{match.group(1)}'; this portable workflow leaves permissions to the user's runtime")
 
 
 def check_gitignore() -> None:
@@ -135,12 +136,14 @@ def check_gitignore() -> None:
 
 def check_package_manifests() -> None:
     manifests = [
-        p for p in ROOT.glob(".agents/**/package.json") if "node_modules" not in p.parts
+        p for runtime in (".agents", ".claude")
+        for p in ROOT.glob(f"{runtime}/**/package.json")
+        if "node_modules" not in p.parts
     ]
     if not manifests:
-        errors.append(".agents: no package.json files found - glob roots are wrong or the tree moved")
+        errors.append(".agents/.claude: no package.json files found - glob roots are wrong or the tree moved")
     for manifest in manifests:
-        relpath = manifest.relative_to(ROOT)
+        relpath = manifest.relative_to(ROOT).as_posix()
         try:
             data = json.loads(manifest.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError) as exc:
@@ -205,7 +208,7 @@ def main() -> int:
         for err in errors:
             print(f"  - {err}")
         return 1
-    print("security_guards: OK (Codex metadata, private state exclusions, package manifests, no tracked node_modules)")
+    print("security_guards: OK (shared runtime metadata, private state exclusions, package manifests, no tracked node_modules)")
     return 0
 
 

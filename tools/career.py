@@ -83,7 +83,7 @@ def initialize(workspace, track):
     data['profiles'].setdefault(track, {})
     data['active_track'] = track
     save_json(workspace / 'profile.json', data)
-    return {'track': track, 'workspace': str(base), 'next': 'Read workflows/codex.md and complete intake.'}
+    return {'track': track, 'workspace': str(base), 'next': 'Read workflows/career.md and complete intake.'}
 
 
 def is_http_source(value):

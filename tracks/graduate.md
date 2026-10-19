@@ -6,7 +6,7 @@ Use `workspace/profile.json` → `profiles.graduate`, preserving all other profi
 `active_track` changes. Use English by default for conversation and application materials, unless the
 user or program explicitly requests another language.
 
-Read `workflows/codex.md` for the runtime/path contract. Use `BASE=workspace/graduate`,
+Read `workflows/career.md` for the runtime/path contract. Use `BASE=workspace/graduate`,
 with private profile sources in `BASE/profile/` and dossiers in `BASE/documents/`.
 Record opportunities in `BASE/opportunities.json` using
 `python tools/career.py record --file <private-record.json>`. Each record needs `title`,

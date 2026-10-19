@@ -1,6 +1,6 @@
 # /apply - Drafter-Reviewer Job Application Workflow
 
-> Codex: read `AGENTS.md` and `workflows/codex.md` first. Select the track and
+> Both runtimes: read `AGENTS.md` and `workflows/career.md` first. Select the track and
 > resolve every personal path through the private workspace mapping. This file
 > preserves the upstream detailed procedure; US track rules take precedence.
 
@@ -24,7 +24,7 @@ This rule is the input side of the Step 3 Factual Grounding Audit, not a competi
 
 ## Step 0: Parse Input
 
-- If `$ARGUMENTS` looks like a URL, **dispatch the `posting-fetcher` agent** via the available Codex subagent tool (read `agents/posting-fetcher.md` as its task contract; permissions depend on the runtime). Pass it the URL only - no profile data, no pasted posting text. It discovers installed portals itself, follows the escalation order below, runs `tools/posting_guard.py` on whatever it retrieved, and returns the gate's verdict, its findings, the extracted metadata and the **cleaned posting text**. The escalation order it applies, from `.agents/skills/job-application-assistant/09-web-research.md`:
+- If `$ARGUMENTS` looks like a URL, **dispatch the `posting-fetcher` agent** via the available subagent tool for the current host (read `agents/posting-fetcher.md` as its task contract; permissions depend on the runtime). Pass it the URL only - no profile data, no pasted posting text. It discovers installed portals itself, follows the escalation order below, runs `tools/posting_guard.py` on whatever it retrieved, and returns the gate's verdict, its findings, the extracted metadata and the **cleaned posting text**. The escalation order it applies, from `.agents/skills/job-application-assistant/09-web-research.md`:
   - **Portal CLI first:** If the URL's host matches an installed portal skill in `.agents/skills/` (derived from the board hosts in `.agents/skills/*/cli/src` and `url-reference.md`, e.g. `linkedin.com` -> `linkedin-search`), run that CLI's `detail` command first:
     ```bash
     bun run .agents/skills/<portal-skill>/cli/src/cli.ts detail "$ARGUMENTS" --format plain
@@ -133,7 +133,7 @@ Write both files to disk. Keep the exact text of both drafts in working memory �
 
 ## Step 3: REVIEWER - Research & Critique
 
-Use the **available Codex subagent tool** to spawn the reviewer as **`application-reviewer`** (read `agents/application-reviewer.md` as its task contract; return edits as text). Expand all profile and output paths in the reviewer prompt to the selected private BASE before dispatch; pass the selected track and rubric explicitly. The reviewer gets a fresh context, so pass the drafts **inline in the prompt** below (do not make the reviewer Read them). Scope the reviewer's file reads to content-critique essentials only — the reviewer does not need the template structure files (`05`, `06`) to critique content, since those govern structural/toolchain concerns the drafter already applied.
+Use the **available subagent tool for the current host** to spawn the reviewer as **`application-reviewer`** (read `agents/application-reviewer.md` as its task contract; return edits as text). Expand all profile and output paths in the reviewer prompt to the selected private BASE before dispatch; pass the selected track and rubric explicitly. The reviewer gets a fresh context, so pass the drafts **inline in the prompt** below (do not make the reviewer Read them). Scope the reviewer's file reads to content-critique essentials only — the reviewer does not need the template structure files (`05`, `06`) to critique content, since those govern structural/toolchain concerns the drafter already applied.
 
 Replace `<COMPANY>`, `<ROLE>`, `<INSERT_JOB_POSTING_TEXT_HERE>`, `<INSERT_CV_DRAFT_HERE>`, and `<INSERT_COVER_LETTER_DRAFT_HERE>` with actual values before dispatching.
 

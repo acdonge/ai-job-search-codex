@@ -1,7 +1,7 @@
-# Codex port verification: native skills and preserved workflow references,
+# Codex and Claude verification: native skills and shared workflow references,
 # private-state/dependency guards, Python regressions, mock portal tests and
 # LaTeX smoke compiles. CI never searches live portals or submits applications.
-# The repository does not configure Codex runtime permissions.
+# The repository does not configure either host's runtime permissions.
 # Actions are pinned and checkout does not persist Git credentials.
 
 name: CI
@@ -17,7 +17,7 @@ permissions:
 
 jobs:
   lint:
-    name: Lint Codex skills and workflow references
+    name: Check Codex and Claude skills and shared workflows
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
@@ -28,10 +28,11 @@ jobs:
         with:
           python-version: "3.12"
       - run: python -m pip install pyyaml
+      - run: python tools/sync_claude_skills.py --check
       - run: python tools/lint_skills.py
 
   security-guards:
-    name: Security guards (Codex metadata, private data, manifests)
+    name: Security guards (shared metadata, private data, manifests)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
@@ -62,7 +63,7 @@ jobs:
 
   python-tests-windows:
     # Keep Windows file-locking, encoding and path regressions visible. This
-    # exercises portable helpers under Git Bash, not a particular Codex host.
+    # exercises portable helpers under Git Bash, not a particular agent host.
     name: Python tool tests (Windows, Python 3.14)
     runs-on: windows-latest
     steps:

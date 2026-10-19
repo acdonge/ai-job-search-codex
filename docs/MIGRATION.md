@@ -2,17 +2,17 @@
 
 Base: MadsLorentzen/ai-job-search, commit
 `2e90272d8d456df56c16a286eab127d2951f783c`. The original MIT license is retained.
-This repository starts from a single snapshot of the Codex US adaptation and does
+This repository starts from a single snapshot of the US adaptation and does
 not include upstream commit history. The source mapping below documents the port;
 compare against the linked upstream repository when reviewing future changes.
 
-| Upstream | Codex edition |
+| Upstream | Shared Codex / Claude Code edition |
 |---|---|
-| CLAUDE.md as mutable profile/instructions | AGENTS.md runtime; templates/candidate-profile.md immutable template; private profile copies |
-| .claude/skills/* | .agents/skills/* with native metadata and dispatcher |
+| CLAUDE.md as mutable profile/instructions | Shared AGENTS.md + immutable CLAUDE.md import; templates/candidate-profile.md template; private profile copies |
+| .claude/skills/* | Canonical .agents/skills/* plus committed Claude adapters referencing the same instructions |
 | .claude/commands/*.md | workflows/*.md, exposed through career-* skills |
 | .claude/agents/*.md | agents/*.md as read-only task contracts, real session tools chosen at runtime |
-| .claude/settings.json | removed; user Codex permission policy applies, no simulated enforcement |
+| .claude/settings.json | No project runtime settings; each host uses its user-selected permission policy |
 | tracked personalized files | workspace/profile.json + workspace/<track>/ private state |
 | Danish default source selection | 54-source US registry, verified primary pages and access labels |
 | one corporate pipeline | industry / graduate / academia, shared verification with distinct materials/gates |
@@ -29,7 +29,7 @@ copies instead of approving edits to tracked profiles.
 
 Industry keeps rank_state's original 30/25/15/30 rubric. Graduate/academia use their
 track guides and opportunities.json, never silently reuse corporate scoring.
-Original corporate detail workflows run through workflows/codex.md path mapping.
+Original corporate detail workflows run through workflows/career.md path mapping.
 
 The upstream version checker detects original versus native layout and maps
 original .claude methodology paths to local .agents paths. It reports Codex
@@ -44,3 +44,12 @@ retained for provenance and explicit use but excluded from US default search.
 
 Official Codex format reference, checked 2026-10-19:
 https://learn.chatgpt.com/docs/build-skills
+
+Both hosts share the same US behavior. `CLAUDE.md` imports `AGENTS.md`; Claude
+skills delegate to the canonical `.agents/skills` files through regular Markdown
+adapters, so Windows clones do not require symlink support. Run
+`python3 tools/sync_claude_skills.py --check` to check adapter consistency.
+`workflows/codex.md` remains a compatibility pointer to `workflows/career.md`.
+The files in `agents/` are task contracts for the host's available delegation tool,
+not registered custom agent types. Connector availability and PDF dependencies
+remain host-specific; report limits instead of assuming capabilities.

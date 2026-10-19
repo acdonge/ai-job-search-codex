@@ -1,6 +1,6 @@
 # /rank - Triage Scraped Jobs into a Ranked Shortlist
 
-> Codex: read `AGENTS.md` and `workflows/codex.md` first. Select the track and
+> Both runtimes: read `AGENTS.md` and `workflows/career.md` first. Select the track and
 > resolve every personal path through the private workspace mapping. This file
 > preserves the upstream detailed procedure; US track rules take precedence.
 
@@ -56,7 +56,7 @@ State how many jobs will be ranked and how many are deferred before proceeding.
 
 ## Step 2: Batch-Fetch and Score
 
-Dispatch parallel **`posting-scorer`** agents via the **available Codex subagent tool** (read `agents/posting-scorer.md` as its task contract; request a read-only review), ~5 jobs per agent (a single agent is fine for ≤5 jobs). Token-efficiency rules, consistent with `/apply`:
+Dispatch parallel **`posting-scorer`** agents via the **available subagent tool for the current host** (read `agents/posting-scorer.md` as its task contract; request a read-only review), ~5 jobs per agent (a single agent is fine for ≤5 jobs). Token-efficiency rules, consistent with `/apply`:
 
 - Pass each agent everything it needs **inline in the prompt** - the job list (title, company, URL) and a compact scoring rubric extracted from the files you read in Step 1: the strong/moderate/weak skill match areas, direct/adjacent experience domains, behavioral thrive/drain factors, career goals, deal-breakers, and the location constraints. Do **not** make agents re-read the profile files.
 - Agents fetch each posting URL following the escalation order in `.agents/skills/job-application-assistant/09-web-research.md` (using the installed portal CLI's `detail` command when the URL belongs to a portal in `.agents/skills/`, or `WebFetch` otherwise) and score **only from actually fetched content** - never from the title alone, never from fabricated posting content. A job that is not scored gets one of two statuses, and they mean different things:

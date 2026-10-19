@@ -1,7 +1,7 @@
-"""Codex port guard regressions replace the obsolete Claude allowlist fixtures.
+"""Shared runtime guard regressions preserve privacy and dependency safeguards.
 
 The executable guards protect source and ignored private data. They do not test
-or claim host-level tool isolation: that is owned by the user's Codex runtime.
+or claim host-level tool isolation: that is owned by the user's selected runtime.
 """
 import importlib.util
 import json
@@ -19,7 +19,7 @@ security_guards = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(security_guards)
 
 
-class CodexGuardTests(unittest.TestCase):
+class DualRuntimeGuardTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
@@ -33,6 +33,12 @@ class CodexGuardTests(unittest.TestCase):
         self.write_manifest({"name": "example", "scripts": {"test": "bun test"}})
         self.skill = self.manifest.parent.parent / "SKILL.md"
         self.skill.write_text("---\nname: example-search\ndescription: Search examples\n---\n", encoding="utf-8")
+        self.claude_skill = self.root / ".claude" / "skills" / "example-search" / "SKILL.md"
+        self.claude_skill.parent.mkdir(parents=True)
+        self.claude_skill.write_text(
+            "---\nname: example-search\ndescription: Search examples\n---\n"
+            "Read `.agents/skills/example-search/SKILL.md`.\n", encoding="utf-8"
+        )
         self.agent = self.root / "agents" / "posting-fetcher.md"
         self.agent.parent.mkdir()
         self.agent.write_text("# Posting fetcher\nReturn retrieved content to the parent.\n", encoding="utf-8")
@@ -77,14 +83,19 @@ class CodexGuardTests(unittest.TestCase):
         result = self.run_guards()
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
-    def test_legacy_settings_are_rejected(self):
-        legacy = self.root / ".claude" / "settings.json"
-        legacy.parent.mkdir()
-        legacy.write_text('{"permissions":{"allow":["Bash(*)"]}}', encoding="utf-8")
-        self.assert_fails("obsolete runtime configuration")
+    def test_repository_claude_settings_are_outside_portable_contract(self):
+        config = self.root / ".claude" / "settings.json"
+        config.write_text('{"permissions":{"allow":["Bash(*)"]}}', encoding="utf-8")
+        self.assert_fails("repository runtime settings are not part of this portable workflow")
+
+    def test_user_local_claude_settings_are_outside_project_contract(self):
+        settings = self.root / ".claude" / "settings.local.json"
+        settings.write_text('{"permissions":{"allow":["Read"]}}', encoding="utf-8")
+        result = self.run_guards()
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
     def test_skill_workflow_and_agent_permission_fields_are_rejected(self):
-        for path in (self.skill, self.workflow, self.agent):
+        for path in (self.skill, self.claude_skill, self.workflow, self.agent):
             original = path.read_text(encoding="utf-8")
             for key in security_guards.UNSUPPORTED_PERMISSION_KEYS:
                 with self.subTest(path=path.name, key=key):
@@ -116,6 +127,12 @@ class CodexGuardTests(unittest.TestCase):
         extra.parent.mkdir(parents=True)
         extra.write_text('{"scripts":{"postinstall":"echo bad"}}', encoding="utf-8")
         self.assert_fails("new-search")
+
+    def test_claude_dependency_manifests_cannot_bypass_lifecycle_guards(self):
+        extra = self.claude_skill.parent / "cli" / "package.json"
+        extra.parent.mkdir()
+        extra.write_text('{"scripts":{"postinstall":"echo bad"}}', encoding="utf-8")
+        self.assert_fails(".claude/skills/example-search/cli/package.json: lifecycle script(s)")
 
     def test_installed_dependency_manifests_are_not_checked_as_project_source(self):
         installed = self.manifest.parent / "node_modules" / "dependency" / "package.json"

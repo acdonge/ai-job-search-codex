@@ -1,6 +1,6 @@
 # /notion-sync - Push Ranked Jobs and Applications to a Notion Database
 
-> Codex: read `AGENTS.md` and `workflows/codex.md` first. Select the track and
+> Both runtimes: read `AGENTS.md` and `workflows/career.md` first. Select the track and
 > resolve every personal path through the private workspace mapping. This file
 > preserves the upstream detailed procedure; US track rules take precedence.
 
@@ -32,7 +32,7 @@ Follow these steps **in order**.
 The command is **silently optional**: when the destination is not reachable, the outcome is one clear message and a clean exit - nothing else in the framework notices this command exists.
 
 1. Check that Notion MCP tools are available in this session (tool names starting with `mcp__notion__` or similar). Determine this from the session's own tool list **only** - never by invoking a different agent runtime from the shell, which would interrupt the user with a permission prompt before the graceful exit. If the tools are not available, stop and tell the user how to connect:
-   > Notion is not connected. Connect the Notion plugin in Codex, then retry this optional workflow.
+   > Notion is not connected. Connect Notion in the current host through its connector or MCP settings, then retry this optional workflow.
 2. Verify the connection with one cheap call (e.g. a workspace search). An auth error → tell the user to re-authenticate via `/mcp` and stop. Never retry in a loop.
 3. The Notion MCP server is interactively authenticated, so "connected but not authenticable right now" (expired OAuth, headless/CI context where the login flow cannot run) gets the same graceful exit as "not configured": state the reason in one line and stop. This includes the configured-but-unauthenticated state where the server exposes only its auth handshake and no data tools - **never initiate the OAuth flow from this command and never ask whether to authenticate now**; the one line points at `/mcp` and the command ends there. Authenticating is the user's move, made outside this command.
 

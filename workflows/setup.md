@@ -1,6 +1,6 @@
 # /setup - Profile Onboarding
 
-> Codex: read `AGENTS.md` and `workflows/codex.md` first. Select the track and
+> Both runtimes: read `AGENTS.md` and `workflows/career.md` first. Select the track and
 > resolve every personal path through the private workspace mapping. This file
 > preserves the upstream detailed procedure; US track rules take precedence.
 
@@ -17,7 +17,7 @@ After the track gate and private initialization, if `$ARGUMENTS` contains `--sec
 Otherwise, first follow AGENTS.md's three-track selection gate, then run
 `python3 tools/career.py init --track <selected-track>`. Read the private profile
 and the selected track's intake. All writes below go to private copies according
-to `workflows/codex.md`; do not personalize tracked templates, skills or AGENTS.md.
+to `workflows/career.md`; do not personalize tracked templates, skills or AGENTS.md.
 The default `workspace/` is ignored by Git. If a custom output path is requested,
 check that it is ignored before storing personal data there. Never push personal
 profiles or application documents. Initialize before the section-update shortcut
@@ -31,7 +31,7 @@ Then welcome the user with a single message that lists three paths. The wording 
 
 > **Welcome to the AI Job Search setup!**
 >
-> I'll help you build your professional profile so Codex can evaluate job postings, tailor CVs, write cover letters, and prepare you for interviews.
+> I'll help you build your professional profile so I can evaluate job postings, tailor CVs, write cover letters, and prepare you for interviews.
 >
 > I see files in your `documents/` folder: [list per subfolder, e.g. "2 in cv/, 1 in linkedin/, 3 in references/"]. Three ways to start:
 >
@@ -47,7 +47,7 @@ Then welcome the user with a single message that lists three paths. The wording 
 
 > **Welcome to the AI Job Search setup!**
 >
-> I'll help you build your professional profile so Codex can evaluate job postings, tailor CVs, write cover letters, and prepare you for interviews.
+> I'll help you build your professional profile so I can evaluate job postings, tailor CVs, write cover letters, and prepare you for interviews.
 >
 > Three ways to start:
 >

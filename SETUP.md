@@ -53,10 +53,25 @@ For industry specify roles, seniority, target geography/remote and requirements.
 
 ## 4. Search and prepare
 
-Use `$career-search` → `$career-rank` → `$career-apply` → `$career-interview` →
-`$career-outcome` in Codex; use the same names with `/` in Claude Code.
-Plain-language requests work too. Pass an official URL or paste
-full text when a portal is blocked. The assistant records source, access status and freshness.
+Use `$career-search` in Codex or `/career-search` in Claude Code. That single
+request includes discovery, assessment and the complete all-results HTML/JSON
+report. You do not need to request scoring or reporting again. Plain-language
+requests work too. Pass official URLs or full source text when a portal is blocked.
+The assistant records every returned lead before filtering, scores every assessable
+lead, and keeps legitimate unscored rows with evidence and reasons. No default
+candidate quota or hidden status filter applies. The full report includes counts
+and unknown-dimension ranges; eligibility is shown separately from fit.
+
+Use `$career-rank` / `/career-rank` to reassess a saved run and
+`$career-html-report` / `/career-html-report` to regenerate its complete report.
+The [pipeline guide](docs/SEARCH_PIPELINE.md) documents `start`, `batch`, `assess`,
+`stop`, `complete` and `check`. If any required stage is unresolved, the assistant
+must save an INCOMPLETE report with pending IDs and the stopping reason. Completion
+covers the recorded search scope, not every vacancy or program on the internet.
+
+When you choose an opportunity, continue with `career-apply`, `career-interview`
+and `career-outcome` using your host's prefix. The assistant records sources,
+access status and freshness throughout.
 The registry is a starting set; add discipline-specific society and institution
 sources as the user's field becomes known. Do not assume saved pages remain current.
 

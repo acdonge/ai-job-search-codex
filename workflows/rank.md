@@ -4,6 +4,29 @@
 > resolve every personal path through the private workspace mapping. This file
 > preserves the upstream detailed procedure; US track rules take precedence.
 
+## US pipeline: assess every discovered lead
+
+Use `docs/SEARCH_PIPELINE.md` and `tools/career_pipeline.py` for all three US
+tracks. Resume the selected run, assess every lead with its exact track rubric,
+and finish with `complete` and `check`. Unknown dimensions remain null and yield
+a range/coverage; unknown eligibility does not erase fit. Retain every excluded,
+closed, unreachable and duplicate row with an evidence-linked explanation.
+Search already authorizes this stage and the full report; do not require another
+rank command. If assessment is still pending, save an explicitly INCOMPLETE report.
+
+For industry, ordinary skill, experience, function and seniority gaps must receive
+an evidenced fit score, including low/zero values when appropriate; uncertain
+eligibility stays VERIFY. An unscored `excluded` row requires the structured
+`hard_gate` contract in `docs/SEARCH_PIPELINE.md`: allowed kind, requirement quote,
+confirmed candidate contradiction and matching source evidence. There is no generic
+"other" hard gate; user-constraint and compensation exclusions also require an
+exact initial scope exclusion. Never invent a gate to skip scoring.
+
+The inherited procedure below is an optional legacy industry reference. Its
+`--limit 10`, `--top 5`, shortlist, industry-only scorer and manual rerun defaults
+**do not apply to the US pipeline**. Read its fetch and posting-guard procedures
+where relevant, but never use its candidate selection to cap a shared run.
+
 You are batch-scoring the jobs that `/scrape` has collected, so the user can decide where to spend `/apply` effort. `/scrape` finds and dedupes postings; `/apply` evaluates one at a time in depth. `/rank` is the bridge: it scores every new posting against the fit framework and returns a ranked shortlist.
 
 `/rank` produces **triage scores**, not final evaluations. It scores from the posting text and the candidate profile only - no company research, no reviewer agent. `/apply`'s Step 1 evaluation (which adds company research) remains authoritative and always re-runs when the user applies.

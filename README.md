@@ -54,11 +54,23 @@ simultaneous edits to the same track from two sessions.
 | Stage | Skill name | Purpose |
 |---|---|---|
 | Start or switch tracks | `career-setup` | Select a track, import documents, fill information gaps |
-| Search | `career-search` | Discover US opportunities, verify official sources, deduplicate |
-| Compare and prioritize | `career-rank` | Check eligibility, apply track-specific criteria, expose uncertainty |
+| Search, score and report | `career-search` | Record all discoveries, assess every lead, validate the complete results report |
+| Reassess and prioritize | `career-rank` | Resume or update every assessment and regenerate the full report |
 | Prepare materials | `career-apply` | Tailor documents, verify facts, review, and record drafts |
 | Interview | `career-interview` | Prepare from the actual application materials and target requirements |
 | Record outcomes | `career-outcome` | Record confirmed submissions, interviews, offers, and decisions |
+
+A search automatically continues through scoring and the all-results HTML report.
+It does not need a separate rank/report request. Every discovered lead stays in the
+run, including provisional, excluded, closed, duplicate and unreachable entries;
+all rows are visible by default. Fit scores and unknown-dimension ranges are
+separate from eligibility. There is no default candidate quota or top-N cutoff.
+
+The [shared pipeline](docs/SEARCH_PIPELINE.md) records batches, validates every
+assessment and reconciles discovered/assessed/scored/unscored/pending/displayed
+counts before issuing a completion receipt. Missing work yields an explicitly
+**INCOMPLETE** report. This validates the recorded run, not exhaustive internet
+coverage or the truth of evidence the assistant failed to collect.
 
 Prefix each skill name with `$` in Codex or `/` in Claude Code.
 Additional skills: `career-expand`, `career-upskill`, `career-html-report`,
@@ -100,7 +112,7 @@ excluded from the default US search workflow.
 
 ## Documentation and verification
 
-- [Setup and usage](SETUP.md), [verification results and limits](docs/VERIFICATION.md)
+- [Setup and usage](SETUP.md), [search pipeline and JSON examples](docs/SEARCH_PIPELINE.md), [verification results and limits](docs/VERIFICATION.md)
 - [Shared instructions](AGENTS.md), [Claude entry point](CLAUDE.md), [runtime paths and workflow dispatch](workflows/career.md)
 - [Industry](tracks/industry.md), [MS/PhD](tracks/graduate.md), [Academia](tracks/academia.md)
 - [Migration map](docs/MIGRATION.md), [security and privacy](SECURITY.md)

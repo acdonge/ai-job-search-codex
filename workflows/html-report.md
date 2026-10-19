@@ -4,6 +4,22 @@
 > resolve every personal path through the private workspace mapping. This file
 > preserves the upstream detailed procedure; US track rules take precedence.
 
+## US pipeline: all results visible by default
+
+Use `docs/SEARCH_PIPELINE.md` and `tools/career_pipeline.py` for search results.
+`complete` and `check` produce and verify all-results HTML/JSON; `report` saves an
+explicitly INCOMPLETE view if a stage is blocked. Every unique discovered lead
+appears by default, including provisional, excluded, closed, duplicate and
+unreachable rows. Show score/range/coverage separately from eligibility and
+explain every unscored row. Reconcile discovered, assessed, scored, unscored,
+pending and displayed counts. Never hide candidates behind a default filter,
+pagination or top-N cap. User-selected filters must show shown/total counts and
+allow resetting to all. Search includes this report without a second request.
+
+The inherited application-history dashboard below remains optional when requested.
+Its CSV lifecycle buckets and statistics must not replace or filter the run's
+complete search-results table.
+
 Generate a self-contained HTML dashboard from `job_search_tracker.csv` and the application archives under `documents/applications/`. The output is a single `.html` file — no server, no dependencies — that can be opened directly in a browser.
 
 ## Step 0: Parse Arguments

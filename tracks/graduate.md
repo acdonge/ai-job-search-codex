@@ -14,6 +14,22 @@ Record opportunities in `BASE/opportunities.json` using
 score coverage and material paths. Do not feed these records into the industry-only
 `tools/rank_state.py` schema. Persist known scores and unknown dimensions as documented.
 
+Search discovery and ranking use the validated run ledger, which exports
+opportunities additively at completion; direct record writes above are for
+lifecycle updates and do not replace the mandatory search pipeline.
+
+## Mandatory search completion
+
+A search includes discovery, numeric assessment and the full all-results report.
+Follow `docs/SEARCH_PIPELINE.md` and `tools/career_pipeline.py` on both hosts.
+Record every discovery before judging fit; never impose a candidate quota, top-N
+limit or default hidden filter. Every lead receives an evidence-backed assessment
+or a legitimate unscored disposition and remains visible. Keep eligibility separate
+from fit: VERIFY permits provisional scoring from known evidence, while unknown
+dimensions stay null with a range and coverage. All-null assessments remain pending.
+Use `complete` then `check`; pending work or a blocked stop requires an explicitly
+INCOMPLETE report. A chat shortlist can supplement, but cannot replace, that table.
+
 ## Setup: determine the kind of degree before searching
 
 At first setup ask whether the user wants company employment, graduate admission or

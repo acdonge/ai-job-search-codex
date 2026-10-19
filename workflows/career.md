@@ -31,13 +31,17 @@ root; all private file paths are resolved explicitly as follows:
 Use absolute or repo-root-relative expanded paths, not the literal `BASE` string.
 Do not change cwd into a skill directory. Shared source tools/templates remain at
 repo root. Private TeX cover classes/fonts are copied by init so relative imports work.
-For the industry `rank_state.py` helper pass `--state BASE/job_scraper/seen_jobs.json`
+The mandatory search/scoring/report path is `tools/career_pipeline.py` for all three
+tracks, described in `docs/SEARCH_PIPELINE.md`. Its run ledger and receipt govern
+completion; direct `career.py record` writes are not a substitute. For optional
+legacy industry `rank_state.py` use pass `--state BASE/job_scraper/seen_jobs.json`
 on every subcommand and `--tracker BASE/job_search_tracker.csv` on `candidates`.
 Graduate and academia do not call its fixed industry scoring calculation.
 For legacy industry location/language fields map canonical `VERIFY` to `FLAG`;
 keep `PASS`/`FAIL` as-is. Keep canonical gates and explanations in opportunities.json.
 Apply hard eligibility failures before invoking the numeric scorer; do not let a
-high score override them. Incomplete scores stay provisional outside rank_state.
+high score override them. Partial scores use the shared scorer's null dimensions,
+range and evidence coverage, not invented values passed to rank_state.
 
 The shared cross-track record is `BASE/opportunities.json`, written by
 `python3 tools/career.py record --track <selected-track> --file <record.json>`. Minimum fields: `title`,
@@ -66,32 +70,68 @@ Behavioral assessment is optional; never infer personality or protected traits.
 
 ## Search
 
+Search means **discover → record all leads → assess every lead → complete and check
+the all-results report** in both runtimes. Read `docs/SEARCH_PIPELINE.md` for exact
+commands and schemas. Ranking and HTML reporting are included in this authorization,
+not optional follow-ups. Never apply a candidate quota or the legacy top-N defaults.
+
 1. Read `config/us_sources.json` and `docs/US_SOURCES.md`; select the active track.
    Generate a starting plan with `tools/career.py search-plan --track <selected-track> --query '<field>'`
    (add `--cycle '<term year>'` for admissions). It emits queries, not search results.
-2. Actually search using available web tools. ATS documentation entries explain adapters, not vacancy indexes. Resolve each
+2. Start a private run with `tools/career_pipeline.py start`, preserving the user's
+   exact request, explicit exclusions and any explicitly requested search budget.
+   Actually search using available web tools. ATS documentation entries explain adapters, not vacancy indexes. Resolve each
    employer’s actual board from its official careers page; do not search API docs
    as though they were job listings. Start with 3 complementary discovery
    sources and official sites; expand to society/field boards and institution lists.
-   Continue until the requested coverage/budget is met or two varied batches yield
-   no new verified matches. Report queries, sources tried, duplicates and failures.
+   Three is a starting number of sources, never a limit on candidates. Log every
+   returned lead with `batch` before judging fit, including weak, provisional,
+   duplicate and inaccessible leads. Each further page/batch must be ingested too.
+   Continue under the validated stop rules in the pipeline guide: provided corpus
+   accounted for, explicit user batch budget reached, or at least three sources
+   followed by two varied successful batches adding no new IDs. No new verified
+   matches is insufficient if unverified new leads are still being discovered.
+   Record access/resource interruption as blocked and incomplete. Report queries,
+   sources tried, duplicates and failures. Never manufacture empty batches.
 3. Prefer primary employer careers/ATS, department/program admissions, lab or HR
    pages. Aggregators and research databases suggest leads; they do not prove
    active openings, current-cycle requirements, funding or faculty availability.
-4. Fetch promising primary pages, run the inherited posting integrity gate, and
+4. Assess every recorded lead. Fetch primary pages, run the inherited posting integrity gate, and
    retain URL, retrieved date, full source text and supporting excerpts. Closed is
    distinct from unreachable. Recheck before ranking/drafting. Report unverified
-   leads separately. Do not bypass login, CAPTCHA, robots or access restrictions.
+   leads visibly with evidence and next action. Do not bypass login, CAPTCHA,
+   robots or access restrictions. Do not silently discard a low-fit lead or treat
+   sponsorship uncertainty as a reason to omit an otherwise evidenced fit score.
 5. Deduplicate by institution/employer + posting/program ID + campus + cycle, using
    `tools/job_key.py` where suitable for industry. One campus/program can have
    separate degrees, delivery modes and deadlines; never merge these blindly.
-6. Industry may reuse `job-scraper` Steps 2–5 and optional enabled CLI details after
-   this US discovery step. Danish demos are not part of this US workflow. LinkedIn
+6. Industry may reuse applicable `job-scraper` fetch, parsing, source-history and
+   optional enabled CLI details after this US discovery step. Its legacy candidate
+   selection, quick-fit-only scoring and selective presentation do not apply. Danish demos are not part of this US workflow. LinkedIn
    and other restricted boards are manual discovery by default. Do not auto-run
    every installed portal. Job recency is a preference, never an admissions cutoff.
-7. Present verified matches with evidence and unknowns, then save records. Never
-   claim exhaustive coverage. No network available: produce a query plan and say
-   live opportunities have not been verified; allow pasted official content.
+7. Use `assess` to persist every lead's gates, reasons and evidence. Score eligible
+   and provisional leads using all track dimension keys; a known subset yields
+   a range, never a reweighted total. Explain each legitimate unscored disposition.
+   All-null or missing assessments remain pending and block completion.
+   For industry, ordinary skills, function, experience and seniority gaps reduce
+   fit; they do not permit an unscored exclusion. `excluded` requires the supported
+   `hard_gate` contract in the pipeline guide, including a requirement quote,
+   confirmed candidate contradiction and matching evidence URL. User-constraint
+   and compensation exclusions must cite an exact initial scope exclusion. No
+   generic hard-gate category exists. Ambiguous eligibility stays VERIFY and the
+   known fit dimensions must still be scored.
+8. Record the stop reason, run `complete`, then `check`. The helper exports additive
+   opportunity records, all-results HTML/JSON and a receipt. Confirm every unique
+   discovered lead is displayed by default, including excluded, closed, duplicate,
+   unreachable and provisional rows. No status filter, pagination or top-N cap may
+   hide rows on first load. The summary must reconcile observations, discovered,
+   assessed, scored, unscored, pending and displayed counts and link the full report.
+   When validation fails, resolve it or run `report` to save an INCOMPLETE artifact;
+   never describe it as a completed search. A chat shortlist may supplement the
+   complete table but must not replace it. Never claim exhaustive market coverage.
+   No network available: produce a query plan and an explicitly incomplete run,
+   say live opportunities have not been verified, and allow pasted official content.
 
 ## Rank, apply, interview and outcome
 
@@ -110,9 +150,15 @@ Behavioral assessment is optional; never infer personality or protected traits.
   PDFs, and honest outcome recording. Do not invent facts or AI-tool expertise.
 - Use the selected track's interview and outcome sections. Save prep packs and
   material versions under BASE/documents/applications/<opportunity-id>/.
-- Graduate/academia rankings and reports read opportunities.json; do not feed their
-  lifecycle or weighting to the industry-only CSV/rank_state pipeline. Render an
-  accessible HTML/Markdown table with track-specific fields and escaped content.
+- Search rankings and reports for every track read the selected pipeline run;
+  `opportunities.json` remains the cross-run application lifecycle record. Do not
+  feed graduate/academia lifecycle or weighting to the industry-only CSV/rank_state
+  pipeline. The shared helper renders the complete escaped results table.
+- `career-rank` resumes assessments in the selected search run and regenerates its
+  validated report; `career-html-report` regenerates the same all-results report.
+  Both use `docs/SEARCH_PIPELINE.md`. Legacy CSV dashboards remain optional for
+  application history, not replacements for complete search results. Reranking or
+  adding batches invalidates the old receipt until `complete` and `check` pass again.
 
 ## Optional workflows and runtime translations
 

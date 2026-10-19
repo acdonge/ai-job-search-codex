@@ -6,6 +6,13 @@ description: "US career expand: industry jobs, MS/PhD admissions, and academic p
 Read `AGENTS.md` and `workflows/career.md` first. Confirm the user's track for this
 chat, initialize private state when necessary, and load `tracks/<active_track>.md`.
 Follow the **expand** stage in that runtime dispatcher and track guide.
+For profile competency expansion, follow `workflows/expand.md` without inventing
+candidate facts. If the user means expanding a search, continue the selected
+run through `docs/SEARCH_PIPELINE.md` and `tools/career_pipeline.py`: append all
+new batches, assess every new or affected lead, and regenerate/check the full
+report. Preserve earlier leads, assessments and outcomes. Do not replace the
+run with a smaller shortlist or narrow scope without the user's instruction.
+
 The inherited detailed reference is `workflows/expand.md`. Read it where the dispatcher
 applies it, preserving source verification, factual grounding and review.
 All personal paths use the private mapping. Never write profiles into tracked

@@ -11,6 +11,18 @@ Private storage follows `BASE=workspace/industry`: profile source copies belong 
 `BASE/profile/`, source snapshots and application materials in `BASE/documents/`.
 Use the path mapping in `workflows/career.md` for the inherited CV, tracker and tools.
 
+## Mandatory search completion
+
+A search includes discovery, numeric assessment and the full all-results report.
+Follow `docs/SEARCH_PIPELINE.md` and `tools/career_pipeline.py` on both hosts.
+Record every discovery before judging fit; never impose a candidate quota, top-N
+limit or default hidden filter. Every lead receives an evidence-backed assessment
+or a legitimate unscored disposition and remains visible. Keep eligibility separate
+from fit: VERIFY permits provisional scoring from known evidence, while unknown
+dimensions stay null with a range and coverage. All-null assessments remain pending.
+Use `complete` then `check`; pending work or a blocked stop requires an explicitly
+INCOMPLETE report. A chat shortlist can supplement, but cannot replace, that table.
+
 ## Setup: ask about the candidate, not only the job title
 
 At initial setup offer all three track choices. For this track collect only missing
@@ -79,6 +91,26 @@ ready to submit; research and clearly labelled drafting may continue.
    preferred qualifications. Unknown proficiency is VERIFY, not an invented mismatch.
 6. **Compensation:** only gate against an explicit hard minimum using comparable units;
    undisclosed pay is VERIFY if it affects that minimum, not an assumed salary.
+
+Ordinary skill, function, seniority and experience gaps belong in the technical and
+experience fit dimensions, including a low or zero score when supported. They do
+not justify an unscored `excluded` disposition, even when a qualification bullet
+uses "required". Preserve the wording, explain the gap and provisionally score the
+known fit dimensions; ambiguous or unsupported eligibility stays VERIFY.
+
+For industry, `excluded` requires a structured `hard_gate` with an allowed `kind`:
+`work_authorization`, `citizenship_clearance_export`, `required_degree`,
+`required_license`, `required_language`, `explicit_user_constraint` or
+`hard_compensation`. There is no experience, skills, seniority or generic "other"
+kind. The first five require an `eligibility` FAIL; the last two require a
+`constraints` FAIL and `user_constraint` exactly matching an initial
+`scope.exclusions` entry. Do not invent a user constraint after discovering a lead.
+
+Every `hard_gate` also requires the actual `requirement_quote`, a confirmed
+`candidate_fact` establishing the contradiction, and `source_url` matching an
+assessment evidence URL. Missing information is not a contradictory fact. See
+`docs/SEARCH_PIPELINE.md` for the complete contract. A closed source uses `closed`;
+an inaccessible source uses `unreachable`. Neither is a skill-fit exclusion.
 
 For remaining opportunities use the upstream four dimensions, with US-specific evidence:
 

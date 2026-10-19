@@ -4,6 +4,18 @@
 > resolve every personal path through the private workspace mapping. This file
 > preserves the upstream detailed procedure; US track rules take precedence.
 
+## US pipeline: distinguish profile expansion from search expansion
+
+The procedure below expands the candidate's factual profile. When the user asks
+for more opportunities or a broader search instead, use `docs/SEARCH_PIPELINE.md`
+and `tools/career_pipeline.py`: append all discovery batches to the selected run,
+assess every new or affected lead and regenerate the full report using `complete`
+and `check`. Preserve earlier results and outcome history. Scope exclusions must
+come from the user; do not add a candidate quota or narrow a field to save effort.
+If new evidence changes scores, invalidate the old completion receipt and recheck.
+Profile enrichment itself does not prove a previously unknown competency; retain
+the confirmation and provenance requirements below.
+
 You are enriching the candidate profile by discovering competencies hidden in documents and public online presence. This command is additive only — it never modifies existing profile content, only extends it.
 
 Follow these steps **exactly in order**. Do not skip steps.

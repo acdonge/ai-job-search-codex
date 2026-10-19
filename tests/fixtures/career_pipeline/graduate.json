@@ -1,0 +1,290 @@
+{
+  "synthetic_fixture": true,
+  "track": "graduate",
+  "academic_role": null,
+  "candidate": {
+    "identity": "Synthetic applicant for deterministic testing; no real person",
+    "citizenship": "US citizen",
+    "location": "United States; willing to relocate within the US",
+    "education": [
+      "BS Mechanical Engineering, GPA 3.6/4.0",
+      "MS Robotics, GPA 3.8/4.0",
+      "PhD Robotics, completed 2026"
+    ],
+    "skills": [
+      "Python",
+      "C++",
+      "ROS 2",
+      "PyTorch",
+      "robot manipulation",
+      "reinforcement learning",
+      "simulation",
+      "Linux"
+    ],
+    "experience": "3 years robotics research and 2 years industry research internship; shipped a ROS 2 manipulation prototype and evaluated 30,000 simulated trials",
+    "research": "3 first-author robotics papers, open-source manipulation benchmark, one conference talk",
+    "teaching": "One semester graduate robotics teaching assistant and mentoring 2 undergraduates",
+    "goals": "Robotics manipulation research and practical deployment in the United States",
+    "unknowns": [
+      "Preferred team culture and manager style",
+      "Professional security-clearance eligibility",
+      "Exact available personal financial resources"
+    ],
+    "missing_credentials": [
+      "No Professional Engineer license",
+      "No nursing degree",
+      "No MD or clinical medical license"
+    ]
+  },
+  "scope": {
+    "request": "Find every opportunity in the supplied graduate corpus, for US locations only. Keep discoveries outside US locations visible with their reason; do not hide or discard them.",
+    "mode": "provided",
+    "source_urls": [
+      "https://fixture.example.org/graduate/board-1",
+      "https://fixture.example.org/graduate/board-2",
+      "https://fixture.example.org/graduate/board-3"
+    ],
+    "exclusions": [
+      "Location outside the United States"
+    ],
+    "expected_urls": [
+      "https://fixture.example.org/graduate/lead-01",
+      "https://fixture.example.org/graduate/lead-02",
+      "https://fixture.example.org/graduate/lead-03",
+      "https://fixture.example.org/graduate/lead-04",
+      "https://fixture.example.org/graduate/lead-05",
+      "https://fixture.example.org/graduate/lead-06",
+      "https://fixture.example.org/graduate/lead-07",
+      "https://fixture.example.org/graduate/lead-08",
+      "https://fixture.example.org/graduate/lead-09",
+      "https://fixture.example.org/graduate/lead-10",
+      "https://fixture.example.org/graduate/lead-11",
+      "https://fixture.example.org/graduate/lead-12",
+      "https://fixture.example.org/graduate/lead-13",
+      "https://fixture.example.org/graduate/lead-14",
+      "https://fixture.example.org/graduate/lead-15",
+      "https://fixture.example.org/graduate/lead-16"
+    ]
+  },
+  "source_observations": [
+    {
+      "source_url": "https://fixture.example.org/graduate/board-1",
+      "query": "robotics",
+      "access": "ok",
+      "checked_on": "2026-10-19",
+      "result_urls": [
+        "https://fixture.example.org/graduate/lead-01",
+        "https://fixture.example.org/graduate/lead-02",
+        "https://fixture.example.org/graduate/lead-03",
+        "https://fixture.example.org/graduate/lead-04",
+        "https://fixture.example.org/graduate/lead-05",
+        "https://fixture.example.org/graduate/lead-06"
+      ]
+    },
+    {
+      "source_url": "https://fixture.example.org/graduate/board-2",
+      "query": "robotics manipulation",
+      "access": "ok",
+      "checked_on": "2026-10-19",
+      "result_urls": [
+        "https://fixture.example.org/graduate/lead-01",
+        "https://fixture.example.org/graduate/lead-07",
+        "https://fixture.example.org/graduate/lead-08",
+        "https://fixture.example.org/graduate/lead-09",
+        "https://fixture.example.org/graduate/lead-10",
+        "https://fixture.example.org/graduate/lead-11",
+        "https://fixture.example.org/graduate/lead-12"
+      ]
+    },
+    {
+      "source_url": "https://fixture.example.org/graduate/board-3",
+      "query": "robotics opportunities",
+      "access": "ok",
+      "checked_on": "2026-10-19",
+      "result_urls": [
+        "https://fixture.example.org/graduate/lead-13",
+        "https://fixture.example.org/graduate/lead-14",
+        "https://fixture.example.org/graduate/lead-15",
+        "https://fixture.example.org/graduate/lead-16"
+      ]
+    }
+  ],
+  "lead_evidence": [
+    {
+      "title": "Robotics PhD 01",
+      "organization": "Synthetic Institution 01",
+      "url": "https://fixture.example.org/graduate/lead-01",
+      "location": "United States",
+      "availability": "Open as of 2026-10-19",
+      "requirements": "BS or equivalent; robotics research interests; three recommendations; December 2026 application deadline.",
+      "evidence_text": "Current synthetic Fall 2027 PhD admissions page is open. Robotics manipulation faculty group is accepting applications; BS requirement is met by candidate. Funding is guaranteed for admitted PhD students for five years, but admission is not guaranteed. Personal resources are unknown.",
+      "checked_on": "2026-10-19",
+      "cycle": "Fall 2027"
+    },
+    {
+      "title": "Robotics PhD 02",
+      "organization": "Synthetic Institution 02",
+      "url": "https://fixture.example.org/graduate/lead-02",
+      "location": "United States",
+      "availability": "Open as of 2026-10-19",
+      "requirements": "BS or equivalent; robotics research interests; three recommendations; December 2026 application deadline.",
+      "evidence_text": "Current synthetic Fall 2027 PhD admissions page is open. Robotics manipulation faculty group is accepting applications; BS requirement is met by candidate. Funding is guaranteed for admitted PhD students for five years, but admission is not guaranteed. Personal resources are unknown.",
+      "checked_on": "2026-10-19",
+      "cycle": "Fall 2027"
+    },
+    {
+      "title": "Robotics PhD 03",
+      "organization": "Synthetic Institution 03",
+      "url": "https://fixture.example.org/graduate/lead-03",
+      "location": "United States",
+      "availability": "Open as of 2026-10-19",
+      "requirements": "BS or equivalent; robotics research interests; three recommendations; December 2026 application deadline. Security-clearance eligibility is required but may be verified after selection.",
+      "evidence_text": "Current synthetic Fall 2027 PhD admissions page is open. Robotics manipulation faculty group is accepting applications; BS requirement is met by candidate. Funding is guaranteed for admitted PhD students for five years, but admission is not guaranteed. Personal resources are unknown. Candidate security-clearance eligibility is not known; do not treat this as a confirmed failure.",
+      "checked_on": "2026-10-19",
+      "cycle": "Fall 2027"
+    },
+    {
+      "title": "Robotics PhD 04",
+      "organization": "Synthetic Institution 04",
+      "url": "https://fixture.example.org/graduate/lead-04",
+      "location": "United States",
+      "availability": "Open as of 2026-10-19",
+      "requirements": "BS or equivalent; robotics research interests; three recommendations; December 2026 application deadline.",
+      "evidence_text": "Current synthetic Fall 2027 PhD admissions page is open. Robotics manipulation faculty group is accepting applications; BS requirement is met by candidate. Funding is guaranteed for admitted PhD students for five years, but admission is not guaranteed. Personal resources are unknown.",
+      "checked_on": "2026-10-19",
+      "cycle": "Fall 2027"
+    },
+    {
+      "title": "Robotics PhD 05",
+      "organization": "Synthetic Institution 05",
+      "url": "https://fixture.example.org/graduate/lead-05",
+      "location": "United States",
+      "availability": "Open as of 2026-10-19",
+      "requirements": "BS or equivalent; robotics research interests; three recommendations; December 2026 application deadline.",
+      "evidence_text": "Current synthetic Fall 2027 PhD admissions page is open. Robotics manipulation faculty group is accepting applications; BS requirement is met by candidate. Funding is guaranteed for admitted PhD students for five years, but admission is not guaranteed. Personal resources are unknown.",
+      "checked_on": "2026-10-19",
+      "cycle": "Fall 2027"
+    },
+    {
+      "title": "Robotics PhD 06",
+      "organization": "Synthetic Institution 06",
+      "url": "https://fixture.example.org/graduate/lead-06",
+      "location": "United States",
+      "availability": "Open as of 2026-10-19",
+      "requirements": "BS or equivalent; robotics research interests; three recommendations; December 2026 application deadline.",
+      "evidence_text": "Current synthetic Fall 2027 PhD admissions page is open. Robotics manipulation faculty group is accepting applications; BS requirement is met by candidate. Funding is guaranteed for admitted PhD students for five years, but admission is not guaranteed. Personal resources are unknown.",
+      "checked_on": "2026-10-19",
+      "cycle": "Fall 2027"
+    },
+    {
+      "title": "Robotics PhD 07",
+      "organization": "Synthetic Institution 07",
+      "url": "https://fixture.example.org/graduate/lead-07",
+      "location": "United States",
+      "availability": "Open as of 2026-10-19",
+      "requirements": "BS or equivalent; robotics research interests; three recommendations; December 2026 application deadline.",
+      "evidence_text": "Current synthetic Fall 2027 PhD admissions page is open. Robotics manipulation faculty group is accepting applications; BS requirement is met by candidate. Funding is guaranteed for admitted PhD students for five years, but admission is not guaranteed. Personal resources are unknown.",
+      "checked_on": "2026-10-19",
+      "cycle": "Fall 2027"
+    },
+    {
+      "title": "Robotics PhD 08",
+      "organization": "Synthetic Institution 08",
+      "url": "https://fixture.example.org/graduate/lead-08",
+      "location": "United States",
+      "availability": "Open as of 2026-10-19",
+      "requirements": "BS or equivalent; robotics research interests; three recommendations; December 2026 application deadline.",
+      "evidence_text": "Current synthetic Fall 2027 PhD admissions page is open. Robotics manipulation faculty group is accepting applications; BS requirement is met by candidate. Funding is guaranteed for admitted PhD students for five years, but admission is not guaranteed. Personal resources are unknown.",
+      "checked_on": "2026-10-19",
+      "cycle": "Fall 2027"
+    },
+    {
+      "title": "Robotics PhD 09",
+      "organization": "Synthetic Institution 09",
+      "url": "https://fixture.example.org/graduate/lead-09",
+      "location": "United States",
+      "availability": "Open as of 2026-10-19",
+      "requirements": "BS or equivalent; robotics research interests; three recommendations; December 2026 application deadline.",
+      "evidence_text": "Current synthetic Fall 2027 PhD admissions page is open. Robotics manipulation faculty group is accepting applications; BS requirement is met by candidate. Funding is guaranteed for admitted PhD students for five years, but admission is not guaranteed. Personal resources are unknown.",
+      "checked_on": "2026-10-19",
+      "cycle": "Fall 2027"
+    },
+    {
+      "title": "Robotics PhD 10",
+      "organization": "Synthetic Institution 10",
+      "url": "https://fixture.example.org/graduate/lead-10",
+      "location": "United States",
+      "availability": "Open as of 2026-10-19",
+      "requirements": "Primarily computational fluid dynamics with some robotics applications.",
+      "evidence_text": "Current synthetic Fall 2027 PhD admissions page is open. Robotics manipulation faculty group is accepting applications; BS requirement is met by candidate. Funding is guaranteed for admitted PhD students for five years, but admission is not guaranteed. Personal resources are unknown. Candidate has little documented fluid dynamics experience, but this is a preference rather than a mandatory credential.",
+      "checked_on": "2026-10-19",
+      "cycle": "Fall 2027"
+    },
+    {
+      "title": "Robotics PhD 11",
+      "organization": "Synthetic Institution 11",
+      "url": "https://fixture.example.org/graduate/lead-11",
+      "location": "United States",
+      "availability": "Open as of 2026-10-19",
+      "requirements": "BS or equivalent; robotics research interests; three recommendations; December 2026 application deadline.",
+      "evidence_text": "Current synthetic Fall 2027 PhD admissions page is open. Robotics manipulation faculty group is accepting applications; BS requirement is met by candidate. Funding is guaranteed for admitted PhD students for five years, but admission is not guaranteed. Personal resources are unknown. The position is junior and strongly aligned with the candidate technical profile; uncertainty is confined to work environment.",
+      "checked_on": "2026-10-19",
+      "cycle": "Fall 2027"
+    },
+    {
+      "title": "Robotics PhD 12",
+      "organization": "Synthetic Institution 12",
+      "url": "https://fixture.example.org/graduate/lead-12",
+      "location": "United States",
+      "availability": "Closed",
+      "requirements": "BS or equivalent; robotics research interests; three recommendations; December 2026 application deadline.",
+      "evidence_text": "Synthetic official page explicitly states applications closed on 2026-10-01. Keep this historical discovery visible.",
+      "checked_on": "2026-10-19",
+      "cycle": "Fall 2027"
+    },
+    {
+      "title": "Robotics PhD 13",
+      "organization": "Synthetic Institution 13",
+      "url": "https://fixture.example.org/graduate/lead-13",
+      "location": "United States",
+      "availability": "Open as of 2026-10-19",
+      "requirements": "Mandatory BS Nursing degree; no substitutions accepted.",
+      "evidence_text": "Official synthetic page mandates BS Nursing degree. Candidate explicitly does not possess that credential; this is a confirmed eligibility mismatch.",
+      "checked_on": "2026-10-19",
+      "cycle": "Fall 2027"
+    },
+    {
+      "title": "Robotics PhD 14",
+      "organization": "Synthetic Institution 14",
+      "url": "https://fixture.example.org/graduate/lead-14",
+      "location": "United States",
+      "availability": "Unable to verify",
+      "requirements": "Unknown because detail access failed.",
+      "evidence_text": "Discovery index contains this title and URL, but detail access returned HTTP 503 on 2026-10-19. No requirements or current availability can be confirmed.",
+      "checked_on": "2026-10-19",
+      "cycle": "Fall 2027"
+    },
+    {
+      "title": "Robotics PhD 01 (syndicated alias)",
+      "organization": "Synthetic Institution 01",
+      "url": "https://fixture.example.org/graduate/lead-15",
+      "location": "United States",
+      "availability": "Open as of 2026-10-19",
+      "requirements": "BS or equivalent; robotics research interests; three recommendations; December 2026 application deadline.",
+      "evidence_text": "Source explicitly identifies this as a duplicate alias of https://fixture.example.org/graduate/lead-01 with the same requisition and cycle. Preserve the alias as a visible duplicate record.",
+      "checked_on": "2026-10-19",
+      "cycle": "Fall 2027"
+    },
+    {
+      "title": "Robotics PhD 16",
+      "organization": "Synthetic Institution 16",
+      "url": "https://fixture.example.org/graduate/lead-16",
+      "location": "London, United Kingdom",
+      "availability": "Open as of 2026-10-19",
+      "requirements": "BS or equivalent; robotics research interests; three recommendations; December 2026 application deadline.",
+      "evidence_text": "Official synthetic page places this opportunity entirely in London, United Kingdom. This violates the explicit US-only location scope.",
+      "checked_on": "2026-10-19",
+      "cycle": "Fall 2027"
+    }
+  ]
+}

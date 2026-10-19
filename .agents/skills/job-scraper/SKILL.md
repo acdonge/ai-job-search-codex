@@ -12,8 +12,20 @@ description: >
 Read `AGENTS.md` and `workflows/career.md` before following the inherited procedure
 below. Select the user's track, load its guide, resolve all private paths, and
 use the US registry. Graduate/academia use their own weighting/documents/cycles.
-For search, the runtime's **Search** section replaces the inherited Step 1 and
-its CLI-first default. Preserve applicable fetch/dedup/archive/review steps.
+For search, the runtime's **Search** section and `docs/SEARCH_PIPELINE.md`
+replace the inherited selection, scoring, state and presentation defaults below.
+Use `tools/career_pipeline.py` for every US search. Record every discovery batch
+before fit filtering, assess every lead, and run `complete` followed by `check`
+to produce the all-results report without another user prompt. No top-3 query
+restriction, 20-result cap, 14-day cutoff, High/Medium/Low-only evaluation or
+shortlist-only display applies to the US pipeline. Source pagination may require
+multiple calls: preserve every returned result and continue the declared scope.
+Keep closed/expired, duplicate, low-fit and unreachable leads visible, with an
+assessment or evidenced unscored reason. Preserve applicable fetch/dedup/archive/
+review procedures; never use the legacy Step 5 presentation to omit run rows.
+
+The procedure below is retained for explicit legacy portal work. Its limits never
+supersede the mandatory US pipeline, even when this skill is invoked directly.
 
 
 

@@ -1,0 +1,837 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-10-19",
+  "sources": [
+    {
+      "id": "greenhouse",
+      "name": "Greenhouse Job Board API",
+      "url": "https://docs.greenhouse.io/job-board.html",
+      "tracks": [
+        "industry",
+        "academia"
+      ],
+      "category": "employer_ats",
+      "authority": "primary",
+      "access": "public_web",
+      "notes": "Employer-specific public GET endpoints require a board token obtained from the employer's career page. No global company search. Authenticate the employer-to-board relationship; GET access does not authorize application POSTs.",
+      "verification_url": "https://docs.greenhouse.io/job-board.html",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "lever",
+      "name": "Lever Postings API",
+      "url": "https://github.com/lever/postings-api",
+      "tracks": [
+        "industry",
+        "academia"
+      ],
+      "category": "employer_ats",
+      "authority": "primary",
+      "access": "public_web",
+      "notes": "Read published postings for a known employer site identifier. Use the correct global/EU instance and preserve hosted/apply URLs. Do not infer US eligibility from remote labels or automate applications.",
+      "verification_url": "https://github.com/lever/postings-api",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "ashby",
+      "name": "Ashby public Job Postings API",
+      "url": "https://developers.ashbyhq.com/docs/public-job-posting-api",
+      "tracks": [
+        "industry",
+        "academia"
+      ],
+      "category": "employer_ats",
+      "authority": "primary",
+      "access": "public_web",
+      "notes": "Public endpoint is scoped to a known employer job-board name. List only isListed=true results; preserve location and workplaceType. Compensation may be absent. Connect the board to the employer's official careers page before trusting it.",
+      "verification_url": "https://developers.ashbyhq.com/docs/public-job-posting-api",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "usajobs",
+      "name": "USAJOBS",
+      "url": "https://www.usajobs.gov/",
+      "tracks": [
+        "industry",
+        "academia"
+      ],
+      "category": "government_jobs",
+      "authority": "primary",
+      "access": "api_key_optional",
+      "notes": "Public job announcements; the optional Search API requires an issued API key and registered-email User-Agent. Check each announcement's hiring path, citizenship, clearance, closing date/time, and current resume instructions. Account and agency workflow are needed to apply.",
+      "verification_url": "https://developer.usajobs.gov/guides/authentication",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "linkedin",
+      "name": "LinkedIn Jobs",
+      "url": "https://www.linkedin.com/jobs/",
+      "tracks": [
+        "industry",
+        "academia"
+      ],
+      "category": "general_job_board",
+      "authority": "discovery",
+      "access": "manual_or_login",
+      "notes": "Use manual discovery or user-provided job links; public previews may be incomplete. LinkedIn restricts scraping and unauthorized automated access. Revalidate job ID, location, salary, and status on the employer's official posting.",
+      "verification_url": "https://www.linkedin.com/legal/user-agreement",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "indeed",
+      "name": "Indeed US",
+      "url": "https://www.indeed.com/",
+      "tracks": [
+        "industry",
+        "academia"
+      ],
+      "category": "general_job_board",
+      "authority": "discovery",
+      "access": "manual_or_login",
+      "notes": "Use manual discovery or an explicitly permitted connector; Indeed restricts automated/agentic access without permission. Review fetch redirected to a non-US locale, so explicitly choose United States and verify location on the employer posting.",
+      "verification_url": "https://www.indeed.com/legal",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "glassdoor",
+      "name": "Glassdoor Jobs",
+      "url": "https://www.glassdoor.com/Job/index.htm",
+      "tracks": [
+        "industry"
+      ],
+      "category": "general_job_board",
+      "authority": "discovery",
+      "access": "manual_or_login",
+      "notes": "Public landing page was readable; full listings, reviews, and salary data may require login. Salary estimates and employee reviews are context, not employer commitments. Verify actual compensation and opening status at the employer.",
+      "verification_url": "https://www.glassdoor.com/Job/index.htm",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "handshake",
+      "name": "Handshake",
+      "url": "https://joinhandshake.com/",
+      "tracks": [
+        "industry"
+      ],
+      "category": "early_career_board",
+      "authority": "discovery",
+      "access": "manual_or_login",
+      "notes": "Career network useful for students and early-career applicants. Job availability can depend on account, institution, and employer eligibility settings. Public marketing access does not verify access to a particular job or application.",
+      "verification_url": "https://joinhandshake.com/",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "wellfound",
+      "name": "Wellfound",
+      "url": "https://wellfound.com/jobs",
+      "tracks": [
+        "industry"
+      ],
+      "category": "startup_board",
+      "authority": "discovery",
+      "access": "manual_or_login",
+      "notes": "Startup and technology roles; account features and applications may require login. Distinguish salary from equity and check remote hiring geography and sponsorship on the employer's original posting.",
+      "verification_url": "https://wellfound.com/jobs",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "builtin",
+      "name": "Built In",
+      "url": "https://builtin.com/jobs",
+      "tracks": [
+        "industry"
+      ],
+      "category": "technology_board",
+      "authority": "discovery",
+      "access": "public_web",
+      "notes": "Technology and startup discovery by US city or remote filter. Listings may be promoted or duplicated; confirm compensation, location restrictions, and an active requisition on the employer career site.",
+      "verification_url": "https://builtin.com/jobs",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "dice",
+      "name": "Dice",
+      "url": "https://www.dice.com/",
+      "tracks": [
+        "industry"
+      ],
+      "category": "technology_board",
+      "authority": "discovery",
+      "access": "manual_or_login",
+      "notes": "Technology roles include staffing-agency and contract ads. Confirm the employer of record, W-2/contract classification, duration, location, and stated work authorization requirements; account features may require login.",
+      "verification_url": "https://www.dice.com/",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "idealist",
+      "name": "Idealist",
+      "url": "https://www.idealist.org/en/jobs",
+      "tracks": [
+        "industry"
+      ],
+      "category": "nonprofit_board",
+      "authority": "discovery",
+      "access": "public_web",
+      "notes": "Nonprofit and mission-focused roles. Select US locations and distinguish paid employment, internships, and volunteer opportunities. Confirm pay, working arrangement, and live application instructions with the organization.",
+      "verification_url": "https://www.idealist.org/en/jobs",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "careeronestop",
+      "name": "CareerOneStop",
+      "url": "https://www.careeronestop.org/",
+      "tracks": [
+        "industry"
+      ],
+      "category": "public_employment_resources",
+      "authority": "discovery",
+      "access": "manual_or_login",
+      "notes": "US Department of Labor-sponsored career, training, local job-center and search resources. Direct fetch returned 403; DOL's official job-seeker page confirms the service. Use the browser manually and verify listings at employers.",
+      "verification_url": "https://www.dol.gov/agencies/eta/job-seekers",
+      "checked_on": "2026-10-19",
+      "check_status": "search_verified"
+    },
+    {
+      "id": "bls_ooh",
+      "name": "BLS Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/",
+      "tracks": [
+        "industry",
+        "graduate",
+        "academia"
+      ],
+      "category": "labor_market_context",
+      "authority": "context",
+      "access": "public_web",
+      "notes": "Occupation-level duties, entry education, pay, and outlook. Check data year and occupation definition; national medians are not an individual offer, a local salary quote, or a job vacancy.",
+      "verification_url": "https://www.bls.gov/ooh/",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "onet",
+      "name": "O*NET OnLine",
+      "url": "https://www.onetonline.org/",
+      "tracks": [
+        "industry",
+        "graduate"
+      ],
+      "category": "occupation_taxonomy",
+      "authority": "context",
+      "access": "public_web",
+      "notes": "Use occupation titles, tasks, skills, and alternate titles to expand search vocabulary and assess transferable skills. Occupational descriptions are not hard requirements for every employer.",
+      "verification_url": "https://www.onetonline.org/",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "uscis_h1b",
+      "name": "USCIS H-1B Employer Data Hub",
+      "url": "https://www.uscis.gov/tools/reports-and-studies/h-1b-employer-data-hub",
+      "tracks": [
+        "industry",
+        "academia"
+      ],
+      "category": "sponsorship_history",
+      "authority": "context",
+      "access": "manual_or_login",
+      "notes": "Direct hub fetch failed; USCIS's FY2024 report confirms the URL and historical petitioner data. Historical petitions do not prove a current opening, sponsorship promise, or individual visa eligibility. Confirm current policy with the employer.",
+      "verification_url": "https://www.uscis.gov/sites/default/files/document/reports/ola_signed_h1b_characteristics_congressional_report_FY24.pdf",
+      "checked_on": "2026-10-19",
+      "check_status": "search_verified"
+    },
+    {
+      "id": "dol_oflc",
+      "name": "DOL OFLC disclosure data",
+      "url": "https://www.dol.gov/agencies/eta/foreign-labor/performance",
+      "tracks": [
+        "industry",
+        "academia"
+      ],
+      "category": "sponsorship_history",
+      "authority": "context",
+      "access": "public_web",
+      "notes": "Official indexed page verified; direct fetch failed during review. Historical LCA/PERM and wage datasets can contain errors and lag. A filing or certification is not a current job, offered salary, visa approval, or sponsorship guarantee.",
+      "verification_url": "https://www.dol.gov/agencies/eta/foreign-labor/performance",
+      "checked_on": "2026-10-19",
+      "check_status": "search_verified"
+    },
+    {
+      "id": "google_careers",
+      "name": "Google Careers (employer example)",
+      "url": "https://www.google.com/about/careers/applications/",
+      "tracks": [
+        "industry"
+      ],
+      "category": "employer_careers",
+      "authority": "primary",
+      "access": "public_web",
+      "notes": "An example of a direct employer source, not a default target list. Filter US offices and confirm job-specific qualifications and remote scope. Expand to the user's selected employers rather than limiting discovery to technology companies.",
+      "verification_url": "https://www.google.com/about/careers/applications/",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "microsoft_careers",
+      "name": "Microsoft Careers (employer example)",
+      "url": "https://careers.microsoft.com/v2/global/en/home.html",
+      "tracks": [
+        "industry"
+      ],
+      "category": "employer_careers",
+      "authority": "primary",
+      "access": "public_web",
+      "notes": "An example of a direct employer career portal. Select United States and read each requisition; search/results may need a browser and applications require an account. Employer name alone does not establish sponsorship.",
+      "verification_url": "https://careers.microsoft.com/v2/global/en/home.html",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "educationusa",
+      "name": "EducationUSA: graduate study",
+      "url": "https://educationusa.state.gov/your-5-steps-us-study/research-your-options/graduate",
+      "tracks": [
+        "graduate"
+      ],
+      "category": "graduate_planning",
+      "authority": "context",
+      "access": "public_web",
+      "notes": "US Department of State guidance for international applicants. Use for degree structures and search planning; institution and program pages control current admissions requirements, funding, deadlines, and international eligibility.",
+      "verification_url": "https://educationusa.state.gov/your-5-steps-us-study/research-your-options/graduate",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "college_navigator",
+      "name": "NCES College Navigator",
+      "url": "https://nces.ed.gov/collegenavigator/",
+      "tracks": [
+        "graduate"
+      ],
+      "category": "institution_directory",
+      "authority": "context",
+      "access": "manual_or_login",
+      "notes": "Direct root fetch failed; the official indexed advanced-degree search page was available. Use institution/program filters for discovery. Reported institutional data may lag and does not establish current program intake, deadlines, tuition, or funding.",
+      "verification_url": "https://nces.ed.gov/collegenavigator/default.aspx?md=p",
+      "checked_on": "2026-10-19",
+      "check_status": "search_verified"
+    },
+    {
+      "id": "dapip",
+      "name": "ED Database of Accredited Postsecondary Institutions and Programs",
+      "url": "https://ope.ed.gov/dapip/",
+      "tracks": [
+        "graduate"
+      ],
+      "category": "accreditation",
+      "authority": "context",
+      "access": "manual_or_login",
+      "notes": "The search application returned no readable content; official ED/NCES pages confirm the service. Verify institution and relevant program with the accreditor; reported data may lag. Accreditation is distinct from SEVP certification and admission.",
+      "verification_url": "https://nces.ed.gov/ipeds/use-the-data/institutional-groupings-in-ipeds",
+      "checked_on": "2026-10-19",
+      "check_status": "search_verified"
+    },
+    {
+      "id": "nsf_grfp",
+      "name": "NSF Graduate Research Fellowship Program",
+      "url": "https://www.nsf.gov/funding/opportunities/grfp-nsf-graduate-research-fellowship-program",
+      "tracks": [
+        "graduate"
+      ],
+      "category": "fellowship",
+      "authority": "primary",
+      "access": "public_web",
+      "notes": "Current solicitation controls eligible fields, prior graduate study, and deadlines. NSF 26-526 requires US citizenship, nationality, or permanent residency by application and acceptance; international student status alone is insufficient. Do not promise funding or carry old eligibility rules forward.",
+      "verification_url": "https://www.nsf.gov/funding/opportunities/grfp-nsf-graduate-research-fellowship-program/nsf26-526/solicitation",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "nsf_awards",
+      "name": "NSF Award Search",
+      "url": "https://www.nsf.gov/awardsearch/",
+      "tracks": [
+        "graduate",
+        "academia"
+      ],
+      "category": "research_funding_context",
+      "authority": "context",
+      "access": "public_web",
+      "notes": "Award Search UI returned no readable records; its official overview and export guidance were readable. Use PI, institution, topic, and award dates to find relevant labs. An award does not show remaining money or a currently funded student/postdoc opening.",
+      "verification_url": "https://www.nsf.gov/funding/award-search",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "nih_reporter",
+      "name": "NIH RePORTER",
+      "url": "https://reporter.nih.gov/",
+      "tracks": [
+        "graduate",
+        "academia"
+      ],
+      "category": "research_funding_context",
+      "authority": "context",
+      "access": "public_web",
+      "notes": "RePORTER is browser/JavaScript-based; official API documentation was readable. Use project/PI records to find relevant research, then verify current lab recruitment and funding directly. A project total is not a student stipend or available hiring budget.",
+      "verification_url": "https://api.reporter.nih.gov/",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "nih_training",
+      "name": "NIH Research Training and Career Development",
+      "url": "https://grants.nih.gov/funding/funding-categories/research-training-and-career-development",
+      "tracks": [
+        "graduate",
+        "academia"
+      ],
+      "category": "fellowship",
+      "authority": "primary",
+      "access": "public_web",
+      "notes": "Follow the specific active funding notice for predoctoral/postdoctoral mechanisms. Citizenship/residency, degree stage, sponsor, institutional nomination, and appointment rules vary; a general training page does not establish personal eligibility or an available slot.",
+      "verification_url": "https://grants.nih.gov/funding/funding-categories/research-training-and-career-development",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "fulbright_foreign",
+      "name": "Fulbright Foreign Student Program",
+      "url": "https://foreign.fulbrightonline.org/",
+      "tracks": [
+        "graduate"
+      ],
+      "category": "fellowship",
+      "authority": "primary",
+      "access": "public_web",
+      "notes": "Select the applicant's home-country administering commission or embassy. Availability, nationality/residency rules, degree support, placement routes, and deadlines vary by country and competition; US graduate admission and a scholarship award are separate outcomes.",
+      "verification_url": "https://foreign.fulbrightonline.org/",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "stanford_graduate",
+      "name": "Stanford Graduate Admissions (institution example)",
+      "url": "https://gradadmissions.stanford.edu/explore-programs",
+      "tracks": [
+        "graduate"
+      ],
+      "category": "official_program_directory",
+      "authority": "primary",
+      "access": "public_web",
+      "notes": "Official MA/MS/PhD program directory; embedded program search may need a browser. Follow each department's current intake and central graduate requirements. Example source only: do not assume Stanford is the user's target or generalize its funding policies.",
+      "verification_url": "https://gradadmissions.stanford.edu/explore-programs",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "mit_graduate",
+      "name": "MIT graduate degree programs (institution example)",
+      "url": "https://oge.mit.edu/graduate-admissions/programs/",
+      "tracks": [
+        "graduate"
+      ],
+      "category": "official_program_directory",
+      "authority": "primary",
+      "access": "public_web",
+      "notes": "Directory links to departments and deadlines. Check degree availability, application cycle/year, exact timezone, and separate funding deadlines in the department. Some master's routes have special eligibility; a department name is not proof of a terminal MS intake.",
+      "verification_url": "https://oge.mit.edu/graduate-admissions/programs/",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "berkeley_graduate",
+      "name": "UC Berkeley graduate programs (institution example)",
+      "url": "https://grad.berkeley.edu/admissions/our-programs/",
+      "tracks": [
+        "graduate"
+      ],
+      "category": "official_program_directory",
+      "authority": "primary",
+      "access": "public_web",
+      "notes": "Program directory includes degree, intake, and GRE filters. Distinguish professional/self-supporting master's, research degrees, and programs restricted to current students. Reconcile central and department requirements for the intended year before ranking.",
+      "verification_url": "https://grad.berkeley.edu/admissions/our-programs/",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "cmu_graduate",
+      "name": "Carnegie Mellon SCS graduate admissions (department example)",
+      "url": "https://www.cs.cmu.edu/education/graduate-admissions",
+      "tracks": [
+        "graduate"
+      ],
+      "category": "official_department_admissions",
+      "authority": "primary",
+      "access": "public_web",
+      "notes": "Example of department-level MS/PhD instructions and program-specific deadlines. SCS, MHCI, and dual-degree routes differ. Read the named program's prompts, test policies, fees, advisor process, and funding; do not apply one route's rules to another.",
+      "verification_url": "https://www.cs.cmu.edu/education/graduate-admissions",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "sevp_school_search",
+      "name": "DHS Study in the States: School Search",
+      "url": "https://studyinthestates.dhs.gov/school-search",
+      "tracks": [
+        "graduate"
+      ],
+      "category": "international_student_context",
+      "authority": "context",
+      "access": "manual_or_login",
+      "notes": "Direct base URL fetch failed; official indexed search content confirmed the service. Verify the specific campus/program's SEVP status with the live tool and designated school official. Certification does not establish academic accreditation, admission, or visa approval.",
+      "verification_url": "https://studyinthestates.dhs.gov/school-search?field_school_address_administrative_area=any&field_school_address_country=any&field_school_address_locality=boston&page=10&school=",
+      "checked_on": "2026-10-19",
+      "check_status": "search_verified"
+    },
+    {
+      "id": "toefl",
+      "name": "ETS TOEFL",
+      "url": "https://www.ets.org/toefl.html",
+      "tracks": [
+        "graduate"
+      ],
+      "category": "official_test_information",
+      "authority": "primary",
+      "access": "public_web",
+      "notes": "Authoritative for current TOEFL formats, scoring, registration, and reporting. The graduate program decides accepted test versions, minimums, validity window, waivers, and score-arrival deadline; do not infer requirements from test-provider marketing.",
+      "verification_url": "https://www.ets.org/toefl.html",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "gre",
+      "name": "ETS GRE",
+      "url": "https://www.ets.org/gre.html",
+      "tracks": [
+        "graduate"
+      ],
+      "category": "official_test_information",
+      "authority": "primary",
+      "access": "public_web",
+      "notes": "Authoritative for General/Subject Test logistics and score reporting. A program may require, accept optionally, or refuse GRE scores. Read the specific admission cycle before advising testing or sending scores.",
+      "verification_url": "https://www.ets.org/gre.html",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "ielts",
+      "name": "IELTS",
+      "url": "https://www.ielts.org/",
+      "tracks": [
+        "graduate"
+      ],
+      "category": "official_test_information",
+      "authority": "primary",
+      "access": "public_web",
+      "notes": "Official test information and recognition lookup. Confirm the accepted test type/delivery format, section minimums, validity, and waiver rules with the specific graduate program; provider recognition alone is insufficient.",
+      "verification_url": "https://www.ielts.org/",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "higheredjobs",
+      "name": "HigherEdJobs",
+      "url": "https://www.higheredjobs.com/",
+      "tracks": [
+        "academia"
+      ],
+      "category": "higher_education_board",
+      "authority": "discovery",
+      "access": "manual_or_login",
+      "notes": "Direct homepage/faculty fetch exposed only an iframe, and the about page was inaccessible. Treat as a manual discovery source until current listings are inspected. Separate faculty, administrative, adjunct, and postdoc roles and verify each at the institution.",
+      "verification_url": "https://www.higheredjobs.com/",
+      "checked_on": "2026-10-19",
+      "check_status": "blocked"
+    },
+    {
+      "id": "herc",
+      "name": "Higher Education Recruitment Consortium (HERC)",
+      "url": "https://www.hercjobs.org/",
+      "tracks": [
+        "academia"
+      ],
+      "category": "higher_education_board",
+      "authority": "discovery",
+      "access": "public_web",
+      "notes": "Consortium source for academic and staff roles, with regional and dual-career resources. Confirm campus, position category, employment fraction, review date, and application path on the hiring institution's official listing.",
+      "verification_url": "https://www.hercjobs.org/",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "chronicle_jobs",
+      "name": "The Chronicle of Higher Education Jobs",
+      "url": "https://jobs.chronicle.com/",
+      "tracks": [
+        "academia"
+      ],
+      "category": "higher_education_board",
+      "authority": "discovery",
+      "access": "manual_or_login",
+      "notes": "Homepage fetch failed; official indexed category pages confirmed the board. Search results can include promoted out-of-region roles and stale ads. Check the actual location, tenure status, appointment length, and live institutional requisition.",
+      "verification_url": "https://jobs.chronicle.com/jobs/faculty-positions/california/",
+      "checked_on": "2026-10-19",
+      "check_status": "search_verified"
+    },
+    {
+      "id": "academic_jobs_online",
+      "name": "Academic Jobs Online",
+      "url": "https://academicjobsonline.org/ajo",
+      "tracks": [
+        "academia"
+      ],
+      "category": "academic_application_platform",
+      "authority": "discovery",
+      "access": "manual_or_login",
+      "notes": "Public position browsing with separate applicant/reference-writer accounts. Employer-linked postings may be the canonical application destination; preserve document and reference requirements. Do not access confidential letters or presume a listed ad is still accepting applications.",
+      "verification_url": "https://academicjobsonline.org/ajo",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "interfolio",
+      "name": "Interfolio Faculty Search",
+      "url": "https://www.interfolio.com/products/faculty-search/",
+      "tracks": [
+        "academia"
+      ],
+      "category": "academic_application_platform",
+      "authority": "primary",
+      "access": "manual_or_login",
+      "notes": "Product URL redirects to Elsevier's Interfolio page. Find institution-specific public position links through official faculty/HR pages; this is not a universal job-search API. Applications/Dossier require an account and letter services may have separate terms.",
+      "verification_url": "https://www.elsevier.com/products/interfolio",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "umich_careers",
+      "name": "University of Michigan Careers (institution example)",
+      "url": "https://careers.umich.edu/",
+      "tracks": [
+        "academia"
+      ],
+      "category": "university_hr",
+      "authority": "primary",
+      "access": "public_web",
+      "notes": "Official campus employment portal; select faculty/research or relevant staff categories and confirm campus. Some faculty searches direct to a department or separate application system. The examples in this registry do not limit the user's institution search.",
+      "verification_url": "https://careers.umich.edu/",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "ucla_recruit",
+      "name": "UCLA Academic Recruit (institution example)",
+      "url": "https://recruit.apo.ucla.edu/",
+      "tracks": [
+        "academia"
+      ],
+      "category": "university_academic_recruitment",
+      "authority": "primary",
+      "access": "public_web",
+      "notes": "Official academic recruitment entry point and open recruitments. Record initial review date separately from final closing date, appointment rank/series, required statements, and reference procedure. Applicant login is needed for submission.",
+      "verification_url": "https://recruit.apo.ucla.edu/",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "nih_postdoc",
+      "name": "NIH Intramural Postdoctoral Fellows",
+      "url": "https://www.training.nih.gov/research-training/pd/",
+      "tracks": [
+        "academia"
+      ],
+      "category": "official_postdoc_program",
+      "authority": "primary",
+      "access": "public_web",
+      "notes": "Official program, degree-recency and eligibility guidance. Follow current nationality/background-check restrictions and NIH international-services guidance; identify a specific PI/opening. Intramural postdoc rules differ from NIH extramural training grants.",
+      "verification_url": "https://www.training.nih.gov/research-training/pd/",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "npa_careers",
+      "name": "National Postdoctoral Association Career Center",
+      "url": "https://careers.nationalpostdoc.org/",
+      "tracks": [
+        "academia"
+      ],
+      "category": "postdoc_board",
+      "authority": "discovery",
+      "access": "manual_or_login",
+      "notes": "Career-center fetch failed; NPA's official indexed directory confirms the destination. Use manual search for postdoctoral and related careers, then verify appointment type, duration, funding, benefits, and visa support directly with the host.",
+      "verification_url": "https://www.nationalpostdoc.org/networking/",
+      "checked_on": "2026-10-19",
+      "check_status": "search_verified"
+    },
+    {
+      "id": "science_careers",
+      "name": "AAAS Science Careers Jobs",
+      "url": "https://jobs.sciencecareers.org/",
+      "tracks": [
+        "industry",
+        "academia"
+      ],
+      "category": "research_job_board",
+      "authority": "discovery",
+      "access": "manual_or_login",
+      "notes": "Job-board fetch returned 403; AAAS's official indexed recruitment page confirmed the board. Global research roles require a US location filter. Ads are discovery evidence; check the lab/institution's opening and application process.",
+      "verification_url": "https://advertising.science.org/science-careers/job-board/",
+      "checked_on": "2026-10-19",
+      "check_status": "search_verified"
+    },
+    {
+      "id": "nature_careers",
+      "name": "Nature Careers",
+      "url": "https://www.nature.com/naturecareers",
+      "tracks": [
+        "industry",
+        "academia"
+      ],
+      "category": "research_job_board",
+      "authority": "discovery",
+      "access": "manual_or_login",
+      "notes": "Job-board fetch returned 403; official Nature recruitment information confirms the service. Filter US roles and distinguish jobs, awards, and career articles. Read the host institution's posting for funding, appointment length, and eligibility.",
+      "verification_url": "https://partnerships.nature.com/products/recruitment-advertising/",
+      "checked_on": "2026-10-19",
+      "check_status": "search_verified"
+    },
+    {
+      "id": "aps_careers",
+      "name": "American Physical Society Careers",
+      "url": "https://www.aps.org/careers",
+      "tracks": [
+        "industry",
+        "academia"
+      ],
+      "category": "discipline_board",
+      "authority": "discovery",
+      "access": "public_web",
+      "notes": "Official physics career page provides job search for academia, industry, and national labs. Linked board may need interactive/manual access. Apply US geography and role filters and confirm appointment/clearance requirements with the employer.",
+      "verification_url": "https://www.aps.org/careers",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "acm_jobs",
+      "name": "ACM Career and Job Center",
+      "url": "https://jobs.acm.org/",
+      "tracks": [
+        "industry",
+        "academia"
+      ],
+      "category": "discipline_board",
+      "authority": "discovery",
+      "access": "manual_or_login",
+      "notes": "Root returned 403; official indexed board pages were available. Computing roles mix academic and industry jobs; filter carefully. Placeholder salary fields can be misleading, so use the employer's stated compensation rather than board defaults.",
+      "verification_url": "https://jobs.acm.org/jobs/function/internships/",
+      "checked_on": "2026-10-19",
+      "check_status": "search_verified"
+    },
+    {
+      "id": "mathjobs",
+      "name": "MathJobs (American Mathematical Society)",
+      "url": "https://www.mathjobs.org/jobs",
+      "tracks": [
+        "academia"
+      ],
+      "category": "discipline_application_platform",
+      "authority": "discovery",
+      "access": "manual_or_login",
+      "notes": "Public mathematical-sciences positions worldwide; select US institutions. Applicant and reference-writer functions require accounts. Confirm each ad's deadline, rank, reference instructions, and whether the institution requires an additional application.",
+      "verification_url": "https://www.mathjobs.org/jobs",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "aha_careers",
+      "name": "American Historical Association Career Center",
+      "url": "https://careers.historians.org/jobseekers/index.cfm",
+      "tracks": [
+        "academia"
+      ],
+      "category": "discipline_board",
+      "authority": "discovery",
+      "access": "manual_or_login",
+      "notes": "History/public-history job discovery with location and category filters. Includes non-US fellowships and non-faculty work; verify geography, appointment type, required materials, and current status at the host. Account features may require login.",
+      "verification_url": "https://careers.historians.org/jobseekers/index.cfm",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "aea_joe",
+      "name": "American Economic Association JOE Network",
+      "url": "https://www.aeaweb.org/joe/",
+      "tracks": [
+        "industry",
+        "academia"
+      ],
+      "category": "discipline_board",
+      "authority": "discovery",
+      "access": "manual_or_login",
+      "notes": "Economics hiring source with academic and nonacademic roles. Global listings require US filtering. Confirm recruitment cycle, interviews, references, and whether applying via JOE also requires the employer's application.",
+      "verification_url": "https://www.aeaweb.org/joe/",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "mla_joblist",
+      "name": "Modern Language Association Job List",
+      "url": "https://joblist.mla.org/",
+      "tracks": [
+        "academia"
+      ],
+      "category": "discipline_board",
+      "authority": "discovery",
+      "access": "manual_or_login",
+      "notes": "Job List returned 403; an official MLA platform announcement linked the current destination. Literature/language searches require manual inspection and US filtering; confirm specialization, teaching load, contract/tenure status, and institutional deadlines.",
+      "verification_url": "https://act.mla.org/crm/mailing/view/?id=dc3d1b2fe1deb37b&reset=1",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "orise",
+      "name": "ORISE internships and fellowships / Zintellect",
+      "url": "https://orise.orau.gov/internships-fellowships/",
+      "tracks": [
+        "graduate",
+        "academia"
+      ],
+      "category": "research_fellowships",
+      "authority": "primary",
+      "access": "public_web",
+      "notes": "Official ORISE page links Zintellect opportunities for graduates, postdocs, and faculty. These are not automatically degree admissions or employee jobs. Each sponsor sets citizenship, degree-recency, stipend, benefits, and appointment rules.",
+      "verification_url": "https://orise.orau.gov/internships-fellowships/",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    },
+    {
+      "id": "pubmed",
+      "name": "PubMed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "tracks": [
+        "graduate",
+        "academia"
+      ],
+      "category": "research_literature",
+      "authority": "context",
+      "access": "public_web",
+      "notes": "Biomedical/life-science literature supports PI/lab fit and recent research mapping. Check author identity and current institutional affiliation. Publication activity does not prove advising availability, admission odds, lab funding, or a vacancy.",
+      "verification_url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "checked_on": "2026-10-19",
+      "check_status": "verified"
+    }
+  ]
+}
